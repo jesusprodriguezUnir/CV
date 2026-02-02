@@ -5,38 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jesús Pedro Rodríguez Castro - CV</title>
     <style>
+        :root {
+            --primary-900: #1e3a5f;
+            --primary-700: #1e40af;
+            --primary-500: #3b82f6;
+            --primary-300: #93c5fd;
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-600: #475569;
+            --slate-900: #0f172a;
+            --accent-red: #ef4444;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        *:focus-visible {
+            outline: 3px solid var(--primary-500);
+            outline-offset: 2px;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
             color: #333;
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
         
         .container {
             max-width: 210mm;
-            margin: 20px auto;
+            margin: clamp(1.25rem, 3vw, 2.5rem) auto;
             background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-lg), 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
             overflow: hidden;
         }
         
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         .header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
+            background: linear-gradient(135deg, 
+                rgba(30, 58, 95, 0.95) 0%, 
+                rgba(37, 99, 235, 0.9) 50%, 
+                rgba(59, 130, 246, 0.88) 100%
+            );
+            backdrop-filter: blur(20px);
             color: white;
-            padding: 40px;
+            padding: clamp(3rem, 6vw, 5rem);
             text-align: center;
+            animation: fadeInDown 0.6s ease-out;
         }
         
         .header h1 {
-            font-size: 2.5em;
+            font-size: clamp(2rem, 4vw, 3.5rem);
             margin-bottom: 10px;
-            font-weight: 300;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
         
         .header .title {
@@ -60,33 +107,45 @@
             font-size: 0.95em;
         }
         
+        .contact-item a {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .contact-item a:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+        
         .main-content {
             display: grid;
-            grid-template-columns: 1fr 300px;
+            grid-template-columns: minmax(400px, 1fr) minmax(280px, 320px);
+            gap: 3rem;
             min-height: 600px;
         }
         
         .left-column {
-            padding: 40px;
+            padding: clamp(2rem, 5vw, 3rem);
         }
         
         .right-column {
-            background: #f8f9fa;
-            padding: 40px 30px;
-            border-left: 1px solid #e9ecef;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2rem);
+            border-left: 1px solid rgba(226, 232, 240, 0.8);
         }
         
         .section {
-            margin-bottom: 35px;
+            margin-bottom: clamp(2.5rem, 5vw, 4rem);
         }
         
         .section h2 {
-            color: #2c3e50;
-            font-size: 1.4em;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #3498db;
+            color: var(--slate-900);
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            margin-bottom: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-500);
             position: relative;
+            font-weight: 600;
+            letter-spacing: -0.01em;
         }
         
         .section h2:before {
@@ -94,9 +153,9 @@
             position: absolute;
             bottom: -2px;
             left: 0;
-            width: 50px;
+            width: 60px;
             height: 2px;
-            background: #e74c3c;
+            background: var(--accent-red);
         }
         
         .job {
@@ -161,20 +220,30 @@
         .tech-tag {
             background: #e3f2fd;
             color: #1976d2;
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.8em;
             font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+        
+        .tech-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.25);
+            background: #d1e9ff;
         }
         
         .summary {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-            margin-bottom: 30px;
-            font-style: italic;
-            line-height: 1.7;
+            background: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(10px) saturate(180%);
+            padding: clamp(1.5rem, 3vw, 2rem);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-500);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            margin-bottom: 48px;
+            line-height: 1.8;
+            box-shadow: var(--shadow-md);
         }
         
         .skills-grid {
@@ -184,10 +253,20 @@
         }
         
         .skill-category {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
+            background: var(--slate-50);
+            padding: 18px;
+            border-radius: 12px;
+            border: none;
+            box-shadow: 
+                8px 8px 16px rgba(174, 174, 192, 0.15),
+                -8px -8px 16px rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            box-shadow: 
+                4px 4px 8px rgba(174, 174, 192, 0.25),
+                -4px -4px 8px rgba(255, 255, 255, 0.85);
         }
         
         .skill-category h4 {
@@ -211,11 +290,18 @@
         }
         
         .languages, .certifications {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
-            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+        
+        .languages:hover, .certifications:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
         
         .languages h3, .certifications h3 {
@@ -356,7 +442,7 @@
                 <img src="image.png" alt="Jesús Pedro Rodríguez Castro" style="width:120px;height:120px;border-radius:50%;border:4px solid rgba(255,255,255,0.3);object-fit:cover;" />
             </div>
             <h1>Jesús Pedro Rodríguez Castro</h1>
-            <div class="title">Scrum Master & Team Lead</div>
+            <div class="title">Líder Técnico & Scrum Master</div>
             <div class="contact-info">
                 <div class="contact-item">
                     <span>📧</span>
@@ -384,7 +470,7 @@
         <div class="main-content">
             <div class="left-column">
                 <div class="summary">
-                    <strong>Perfil Profesional:</strong> Scrum Master y desarrollador Full Stack con más de 15 años de experiencia en el desarrollo de software. Especialista en tecnologías .NET, Angular y metodologías ágiles. Experiencia liderando equipos de desarrollo e implementando CI/CD. Comprometido con la calidad del software y la mejora continua de procesos.
+                    <strong>Perfil Profesional:</strong> Líder Técnico Senior y Scrum Master con más de 15 años de experiencia en el desarrollo de software empresarial. Especialista en la definición de arquitecturas escalables bajo Domain-Driven Design (DDD) y en la implementación de marcos de trabajo ágiles. Experto en ecosistemas .NET y Angular, con una sólida trayectoria liderando la modernización de sistemas críticos y fomentando la excelencia técnica en los equipos de desarrollo.
                 </div>
                 
                 <div class="section">
@@ -392,35 +478,30 @@
                     
                    <div class="job">
                         <div class="job-header">
-                            <div class="job-title">Responsable de Scrum y Líder Técnico</div>
+                            <div class="job-title">Líder Técnico & Scrum Master</div>
                             <div class="company">UNIR - La Universidad en Internet</div>
-                            <div class="period">Febrero 2020 - Presente (5 años 5 meses)</div>
+                            <div class="period">Febrero 2020 - Presente (6 años)</div>
                             <div class="location">Madrid, España</div>
                         </div>
                         <div class="job-description">
                             <ul>
-                                <li>Lidero equipos de desarrollo aplicando metodologías ágiles Scrum</li>
-                                <li>Capacitación y mentoría a equipos de desarrollo</li>
-                                <li>Desarrollo de aplicaciones complejas en el ERP Académico con arquitectura DDD</li>
-                                <li>Implementación de GitFlow, Pull Requests y testing automatizado</li>
-                                <li>Gestión de CI/CD con TeamCity y Azure DevOps</li>
-                                <li>Desarrollo de soluciones urgentes y hotfixes</li>
-                                
+                                <li><strong>Liderazgo Técnico:</strong> Dirección técnica y diseño de la arquitectura del núcleo del ERP Académico, garantizando la mantenibilidad mediante patrones DDD</li>
+                                <li><strong>Gestión de Equipos:</strong> Liderazgo de equipos de desarrollo bajo el marco Scrum, actuando como facilitador para optimizar la entrega de valor y la cohesión del grupo</li>
+                                <li><strong>Cultura DevOps:</strong> Supervisión y mejora de pipelines CI/CD utilizando TeamCity y Azure DevOps para profesionalizar los ciclos de despliegue</li>
+                                <li><strong>Calidad de Software:</strong> Definición de estándares de desarrollo y estrategias de testing, manteniendo una cobertura de pruebas del 80%</li>
                             </ul>
                             <div class="tech-tags">
-                                <span class="tech-tag">Angular</span>
-                                <span class="tech-tag">Angular 18</span>
                                 <span class="tech-tag">.NET Core 8.0</span>
-                                <span class="tech-tag">.NET Framework</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">GitHub Copilot</span>
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">Angular 18</span>
+                                <span class="tech-tag">DDD</span>
+                                <span class="tech-tag">Clean Architecture</span>
+                                <span class="tech-tag">Entity Framework</span>
                                 <span class="tech-tag">TeamCity</span>
                                 <span class="tech-tag">Azure DevOps</span>
                                 <span class="tech-tag">Docker</span>
-                                <span class="tech-tag">Mediator Pattern</span>
-                                <span class="tech-tag">MVC</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">jQuery UI</span>
+                                <span class="tech-tag">Unit Testing</span>
+                                <span class="tech-tag">Python</span>
                             </div>
                         </div>
                     </div>
@@ -430,28 +511,36 @@
                             <div class="job-title">Analista .NET / Analista Funcional</div>
                             <div class="company">SOTEC CONSULTING</div>
                             <div class="period">Junio 2010 - Febrero 2020 (9 años 9 meses)</div>
-                            <div class="location">Las Rozas & Monteprincipe, Madrid</div>
+                            <div class="location">Madrid, España</div>
                         </div>
                         <div class="job-description">
                             <ul>
-                                <li>Desarrollo en proyecto Fiba Solar para Santander Consumer</li>
-                                <li>Resolución de problemas técnicos complejos</li>
-                                <li>Trabajo con bases de datos Oracle</li>
-                                <li>Desarrollo y mantenimiento de aplicaciones web bancarias</li>
-                                <li>Migración de aplicaciones de Framework 1.1 a 4.0</li>
-                                <li>Implementación de inyección de dependencias</li>
-                                <li>Trabajo con reporting y componentes especializados</li>
+                                <li><strong>Gestión de Sistemas:</strong> Responsable del ciclo de vida de aplicaciones críticas para el negocio, asegurando su estabilidad y evolución funcional</li>
+                                <li><strong>Optimización y Mantenimiento:</strong> Mejora continua del rendimiento de aplicaciones y consultas en bases de datos Oracle, minimizando incidencias en producción</li>
+                                <li><strong>Modernización Tecnológica:</strong> Liderazgo de proyectos de migración técnica desde versiones legacy hacia entornos .NET modernos, asegurando la continuidad operativa</li>
                             </ul>
                             <div class="tech-tags">
                                 <span class="tech-tag">C#</span>
-                                <span class="tech-tag">Visual Studio 2017</span>
-                                <span class="tech-tag">Oracle</span>
                                 <span class="tech-tag">ASP.NET</span>
+                                <span class="tech-tag">Oracle</span>
+                                <span class="tech-tag">SQL Server</span>
                                 <span class="tech-tag">VB.NET</span>
                                 <span class="tech-tag">Web Services</span>
                             </div>
                         </div>
                     </div>
+
+                <div class="section">
+                    <h2>Proyectos Destacados</h2>
+                    <div class="job">
+                        <div class="job-description">
+                            <p><strong>Perfil de GitHub:</strong> Desarrollo de repositorios de referencia que implementan buenas prácticas de ingeniería, arquitectura limpia y patrones de diseño modernos.</p>
+                            <div class="tech-tags" style="margin-top: 15px;">
+                                <a href="https://github.com/jesusprodriguezUnir" target="_blank" class="tech-tag" style="text-decoration: none; background: var(--primary-500); color: white; display: inline-block;">👨‍💻 Ver GitHub Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="section">
                     <h2>Educación</h2>
@@ -472,24 +561,32 @@
                         <div class="skill-category">
                             <h4>Frontend</h4>
                             <div class="skill-list">
-                                <span class="skill-item">Angular 18</span>
+                                <span class="skill-item">Angular</span>
                                 <span class="skill-item">JavaScript</span>
                                 <span class="skill-item">HTML5</span>
                                 <span class="skill-item">CSS3</span>
-                                <span class="skill-item">jQuery</span>
                             </div>
                         </div>
                         
                         <div class="skill-category">
                             <h4>Backend</h4>
                             <div class="skill-list">
-                                <span class="skill-item">.NET Core 8.0</span>
+                                <span class="skill-item">.NET Core</span>
                                 <span class="skill-item">C#</span>
                                 <span class="skill-item">Python</span>
-                                <span class="skill-item">FastAPI</span>
-                                <span class="skill-item">ASP.NET MVC</span>
+                                <span class="skill-item">Entity Framework</span>
+                                <span class="skill-item">ASP.NET</span>
                                 <span class="skill-item">Web Services</span>
-                                <span class="skill-item">VB.NET</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Arquitectura</h4>
+                            <div class="skill-list">
+                                <span class="skill-item">DDD</span>
+                                <span class="skill-item">Clean Architecture</span>
+                                <span class="skill-item">Microservicios</span>
+                                <span class="skill-item">Unit Testing</span>
                             </div>
                         </div>
                         
@@ -517,16 +614,17 @@
                             <h4>Metodologías</h4>
                             <div class="skill-list">
                                 <span class="skill-item">Scrum</span>
+                                <span class="skill-item">Kanban</span>
                                 <span class="skill-item">Agile</span>
-                                <span class="skill-item">DDD</span>
-                                <span class="skill-item">Unit Testing</span>
                             </div>
                         </div>
 
                         <div class="skill-category">
-                            <h4>Herramientas IA</h4>
+                            <h4>Soft Skills</h4>
                             <div class="skill-list">
-                                <span class="skill-item">GitHub Copilot</span>
+                                <span class="skill-item">Mentoring</span>
+                                <span class="skill-item">Visión Estratégica</span>
+                                <span class="skill-item">Liderazgo</span>
                             </div>
                         </div>
                     </div>
