@@ -4,660 +4,561 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jesús Pedro Rodríguez Castro - CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-900: #1e3a5f;
-            --primary-700: #1e40af;
-            --primary-500: #3b82f6;
-            --primary-300: #93c5fd;
-            --slate-50: #f8fafc;
-            --slate-100: #f1f5f9;
-            --slate-600: #475569;
-            --slate-900: #0f172a;
+            /* Paleta de colores más profesional y moderna (Slate Blue) */
+            --primary-900: #0f172a;
+            --primary-700: #1e293b;
+            --primary-500: #3b82f6; /* Azul brillante para acentos */
+            --primary-100: #dbeafe;
+            
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            
             --accent-red: #ef4444;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        *:focus-visible {
-            outline: 3px solid var(--primary-500);
-            outline-offset: 2px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            line-height: 1.7;
-            color: #333;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px; /* Sutil patrón de puntos */
             font-size: 15px;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
+
+        a { text-decoration: none; color: inherit; }
+
+        /* Contenedor Principal más ancho para escritorio */
         .container {
-            max-width: 800px;
-            margin: clamp(1.25rem, 3vw, 2.5rem) auto;
-            background: white;
-            box-shadow: var(--shadow-lg), 0 20px 40px rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
+            max-width: 1000px; /* Aumentado de 800px a 1000px */
+            margin: 40px auto;
+            background: var(--bg-card);
+            box-shadow: var(--shadow-lg);
+            border-radius: var(--radius);
             overflow: hidden;
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .header {
-            background: linear-gradient(135deg, 
-                rgba(30, 58, 95, 0.95) 0%, 
-                rgba(37, 99, 235, 0.9) 50%, 
-                rgba(59, 130, 246, 0.88) 100%
-            );
-            backdrop-filter: blur(20px);
-            color: white;
-            padding: clamp(2.5rem, 4vw, 3.5rem);
-            text-align: center;
-            animation: fadeInDown 0.6s ease-out;
-        }
-        
-        .header h1 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            margin-bottom: 6px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-        
-        .header .title {
-            font-size: 1.3em;
-            margin-bottom: 12px;
-            opacity: 0.9;
-        }
-        
-        .contact-info {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 12px;
+            flex-direction: column;
         }
         
-        .contact-item {
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 3rem;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.95em;
-        }
-        
-        .contact-item a {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .contact-item a:hover {
-            transform: translateY(-2px);
-            text-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-        }
-        
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 280px;
             gap: 2rem;
-        }
-        
-        .left-column {
-            padding: clamp(1.8rem, 4vw, 2.2rem);
-        }
-        
-        .right-column {
-            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-            padding: clamp(1.8rem, 4vw, 2.2rem) clamp(1.5rem, 3vw, 1.8rem);
-            border-left: 1px solid rgba(226, 232, 240, 0.8);
-        }
-        
-        .section {
-            margin-bottom: clamp(1.5rem, 3vw, 2rem);
-        }
-        
-        .section h2 {
-            color: var(--slate-900);
-            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-            margin-bottom: 24px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary-500);
             position: relative;
-            font-weight: 600;
-            letter-spacing: -0.01em;
+            overflow: hidden;
         }
-        
-        .section h2:before {
+
+        /* Efecto decorativo en el header */
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=');
+            opacity: 0.4;
+        }
+
+        .profile-photo img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.4);
+            object-fit: cover;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            flex: 1;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .header .title {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .contact-item a, .contact-item span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,0,0,0.2);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            color: white;
+        }
+
+        .contact-item a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* GRID PRINCIPAL */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 7fr 3fr; /* Proporción 70% - 30% */
+        }
+
+        .left-column {
+            padding: 3rem;
+        }
+
+        .right-column {
+            background: #f8fafc;
+            padding: 3rem 2rem;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        /* SECCIONES Y TÍTULOS */
+        .section { margin-bottom: 2.5rem; }
+
+        .section h2 {
+            font-size: 1.4rem;
+            color: var(--primary-900);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+
+        .section h2::after {
             content: '';
             position: absolute;
             bottom: -2px;
             left: 0;
-            width: 60px;
+            width: 50px;
             height: 2px;
-            background: var(--accent-red);
+            background: var(--primary-500);
         }
-        
-        .job {
-            margin-bottom: 18px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+
+        /* SUMMARY BOX */
+        .summary-box {
+            background: #f0f9ff;
+            border-left: 4px solid var(--primary-500);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            color: var(--primary-700);
         }
-        
-        .job:last-child {
-            border-bottom: none;
-        }
-        
-        .job-header {
-            margin-bottom: 10px;
-        }
-        
-        .job-title {
-            font-weight: 600;
-            color: #2c3e50;
-            font-size: 1.1em;
-        }
-        
-        .company {
-            color: #3498db;
-            font-weight: 500;
-            margin: 5px 0;
-        }
-        
-        .period {
-            color: #7f8c8d;
-            font-size: 0.9em;
-            font-style: italic;
-        }
-        
-        .location {
-            color: #95a5a6;
-            font-size: 0.9em;
-        }
-        
-        .job-description {
-            margin-top: 12px;
-            line-height: 1.6;
-        }
-        
-        .job-description ul {
-            margin: 10px 0;
+
+        /* EXPERIENCIA (TIMELINE STYLE) */
+        .job-list {
+            position: relative;
             padding-left: 20px;
+            border-left: 2px solid #e2e8f0;
         }
-        
+
+        .job {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        /* El punto del timeline */
+        .job::before {
+            content: '';
+            position: absolute;
+            left: -26px; /* Ajuste para centrar sobre la línea */
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--primary-500);
+        }
+
+        .job-header h3 {
+            font-size: 1.2rem;
+            color: var(--primary-900);
+            font-weight: 600;
+        }
+
+        .job-company {
+            color: var(--primary-500);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .job-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .job-description ul {
+            padding-left: 18px;
+            margin-bottom: 12px;
+        }
+
         .job-description li {
-            margin: 5px 0;
-            color: #555;
+            margin-bottom: 6px;
+            color: var(--text-main);
         }
-        
-        .tech-tags {
+
+        /* TAGS */
+        .tags-container {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
             margin-top: 10px;
         }
-        
-        .tech-tag {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 6px 14px;
+
+        .tag {
+            background: white;
+            border: 1px solid #cbd5e1;
+            color: var(--text-main);
+            padding: 3px 10px;
             border-radius: 20px;
-            font-size: 0.8em;
+            font-size: 0.75rem;
             font-weight: 500;
-            transition: all 0.2s ease;
-            cursor: default;
+            transition: all 0.2s;
         }
-        
-        .tech-tag:hover {
-            transform: scale(1.05);
-            box-shadow: 0 2px 8px rgba(25, 118, 210, 0.25);
-            background: #d1e9ff;
+
+        .tag:hover {
+            border-color: var(--primary-500);
+            color: var(--primary-500);
+            transform: translateY(-1px);
         }
-        
-        .summary {
-            background: rgba(248, 250, 252, 0.8);
-            backdrop-filter: blur(10px) saturate(180%);
-            padding: clamp(1.5rem, 3vw, 2rem);
-            border-radius: 12px;
-            border-left: 4px solid var(--primary-500);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            margin-bottom: 30px;
-            line-height: 1.8;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+
+        /* BOTÓN GITHUB */
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
             gap: 8px;
+            background: #24292e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: transform 0.2s;
         }
-        
-        .skill-category {
-            background: var(--slate-50);
-            padding: 12px 15px;
-            border-radius: 12px;
-            border: none;
-            box-shadow: 
-                8px 8px 16px rgba(174, 174, 192, 0.15),
-                -8px -8px 16px rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
+        .github-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+        /* SKILLS SIDEBAR */
+        .skill-group {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border: 1px solid #f1f5f9;
         }
-        
-        .skill-category:hover {
-            box-shadow: 
-                4px 4px 8px rgba(174, 174, 192, 0.25),
-                -4px -4px 8px rgba(255, 255, 255, 0.85);
+
+        .skill-group h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
         }
-        
-        .skill-category h4 {
-            color: #2c3e50;
-            margin-bottom: 6px;
-            font-size: 0.95em;
-        }
-        
-        .skill-list {
+
+        .pill-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 6px;
+        }
+
+        .pill {
+            background: var(--primary-100);
+            color: var(--primary-700);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* IDIOMAS Y CERTIFICACIONES */
+        .info-box {
+            margin-bottom: 2rem;
         }
         
-        .skill-item {
-            background: #e8f4fd;
-            color: #2c3e50;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-        }
-        
-        .languages, .certifications {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            margin-bottom: 16px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-        }
-        
-        .languages:hover, .certifications:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-        
-        .languages h3, .certifications h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-        
-        .lang-item, .cert-item {
+        .info-item {
             display: flex;
             justify-content: space-between;
-            margin: 8px 0;
-            font-size: 0.9em;
+            align-items: baseline;
+            padding: 6px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            font-size: 0.9rem;
         }
         
-        .lang-level {
-            color: #7f8c8d;
-            font-size: 0.85em;
-        }
-        
-        .cert-item {
-            flex-direction: column;
-            margin: 12px 0;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 5px;
-        }
-        
-        .cert-name {
-            font-weight: 500;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        
-        @media (max-width: 900px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+        .info-item:last-child { border-bottom: none; }
+        .info-value { color: var(--text-light); font-size: 0.85rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
             }
-            
+            .contact-info {
+                justify-content: center;
+            }
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
             .right-column {
                 border-left: none;
-                border-top: 1px solid rgba(226, 232, 240, 0.8);
+                border-top: 1px solid #e2e8f0;
             }
         }
         
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-            
-            .header {
-                padding: 30px 20px;
-            }
-            
-            .left-column, .right-column {
-                padding: 30px 20px;
-            }
-        }
-        
+        /* PRINT */
         @media print {
-            body {
-                background: white;
-                font-size: 11px;
-            }
-            .container {
-                box-shadow: none;
-                margin: 0;
-                max-width: 100vw;
-                width: 100vw;
-                min-width: 0;
-                padding: 0;
-            }
-            .main-content {
-                grid-template-columns: 1fr 220px;
-                gap: 18px;
-            }
-            .left-column, .right-column {
-                padding: 18px 10px !important;
-            }
-            .header {
-                padding: 18px 10px !important;
-            }
-            .profile-photo img {
-                width: 80px !important;
-                height: 80px !important;
-            }
-            .header h1 {
-                font-size: 1.5em !important;
-            }
-            .header .title {
-                font-size: 1em !important;
-            }
-            .section h2 {
-                font-size: 1.1em !important;
-                margin-bottom: 10px !important;
-            }
-            .skill-category h4 {
-                font-size: 0.85em !important;
-            }
-            .skill-item, .tech-tag {
-                font-size: 0.7em !important;
-                padding: 2px 7px !important;
-            }
-            .summary {
-                padding: 10px !important;
-                font-size: 0.95em !important;
-            }
-            .languages, .certifications {
-                padding: 10px !important;
-                font-size: 0.9em !important;
-            }
-            .job {
-                margin-bottom: 10px !important;
-                padding-bottom: 8px !important;
-            }
-            .job-title {
-                font-size: 1em !important;
-            }
-            .company, .period, .location {
-                font-size: 0.85em !important;
-            }
-            @page {
-                size: A4;
-                margin: 0;
-            }
+            body { background: white; }
+            .container { margin: 0; box-shadow: none; width: 100%; max-width: 100%; }
+            .header { padding: 1.5rem !important; background: #eee !important; color: black !important; -webkit-print-color-adjust: exact; }
+            .header .title { color: #444; border-color: #999; }
+            .contact-item a, .contact-item span { color: #333; background: none; padding: 0; }
+            .job::before { border-color: #333; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="header">
-            <div class="profile-photo">
-                <img src="image.png" alt="Jesús Pedro Rodríguez Castro" style="width:120px;height:120px;border-radius:50%;border:4px solid rgba(255,255,255,0.3);object-fit:cover;" />
-            </div>
-            <h1>Jesús Pedro Rodríguez Castro</h1>
-            <div class="title">Líder Técnico & Scrum Master</div>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span>📧</span>
-                    <a href="mailto:jesusprodriguez@gmail.com" style="color:white;text-decoration:underline;">jesusprodriguez@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <span>💼</span>
-                    <a href="https://linkedin.com/in/jesús-pedro-rodríguez-castro-b746394a" style="color:white;text-decoration:underline;">linkedin.com/in/jesús-pedro-rodríguez-castro-b746394a</a>
-                </div>
-                <div class="contact-item">
-                    <span>💻</span>
-                    <a href="https://github.com/jesusprodriguezUnir" style="color:white;text-decoration:underline;">github.com/jesusprodriguezUnir</a>
-                </div>
-                <div class="contact-item">
-                    <span>📱</span>
-                    <span>+34670402450</span>
-                </div>
-                <div class="contact-item">
-                    <span>📍</span>
-                    <span>Madrid, España</span>
-                </div>
-            </div>
-        </div>
         
-        <div class="main-content">
+        <header class="header">
+            <div class="profile-photo">
+                <img src="image.png" alt="Jesús Pedro Rodríguez Castro" onerror="this.src='https://ui-avatars.com/api/?name=Jesus+Pedro&background=random&size=128'" />
+            </div>
+            <div class="header-content">
+                <h1>Jesús Pedro Rodríguez Castro</h1>
+                <div class="title">Líder Técnico & Scrum Master</div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <a href="mailto:jesusprodriguez@gmail.com">
+                            <span>✉️</span> jesusprodriguez@gmail.com
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://linkedin.com/in/jesús-pedro-rodríguez-castro-b746394a" target="_blank">
+                            <span>💼</span> LinkedIn
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://github.com/jesusprodriguezUnir" target="_blank">
+                            <span>💻</span> GitHub
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span> +34 670 40 24 50
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span> Madrid, España
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="main-grid">
             <div class="left-column">
-                <div class="summary">
-                    <strong>Perfil Profesional:</strong> Líder Técnico Senior y Responsable de Scrum con más de 15 años de experiencia en el desarrollo de software empresarial. <strong>Líder Técnico:</strong> Experto en la definición de arquitecturas escalables bajo Domain-Driven Design (DDD), Clean Architecture y patrones de diseño modernos. Especialista en la conducción de transformaciones tecnológicas y modernización de sistemas críticos. <strong>Aplicación de Metodologías Ágiles:</strong> Profundo conocimiento en implementación y optimización de marcos de trabajo Scrum y Kanban para maximizar la entrega de valor y la cohesión de equipos. Experto en ecosistemas .NET y Angular, con una sólida trayectoria liderando equipos de alto desempeño y fomentando la excelencia técnica en organizaciones complejas.
+                
+                <div class="summary-box">
+                    <strong>Perfil Profesional:</strong> Líder Técnico Senior y Responsable de Scrum con más de 15 años de experiencia. Experto en arquitecturas escalables (DDD, Clean Architecture), transformación tecnológica y liderazgo de equipos de alto rendimiento bajo ecosistemas .NET y Angular.
                 </div>
                 
                 <div class="section">
                     <h2>Experiencia Profesional</h2>
-                    
-                   <div class="job">
-                        <div class="job-header">
-                            <div class="job-title">Líder Técnico & Responsable de Scrum</div>
-                            <div class="company">UNIR - La Universidad en Internet</div>
-                            <div class="period">Febrero 2020 - Presente (6 años)</div>
-                            <div class="location">Madrid, España</div>
-                        </div>
-                        <div class="job-description">
-                            <ul>
-                                <li><strong>Liderazgo Técnico:</strong> Dirección técnica y diseño de la arquitectura del núcleo del ERP Académico, garantizando la mantenibilidad mediante patrones DDD</li>
-                                <li><strong>Gestión de Equipos:</strong> Liderazgo de equipos de desarrollo bajo el marco Scrum, actuando como facilitador para optimizar la entrega de valor y la cohesión del grupo</li>
-                                <li><strong>Cultura DevOps:</strong> Supervisión y mejora de pipelines CI/CD utilizando TeamCity y Azure DevOps para profesionalizar los ciclos de despliegue</li>
-                                <li><strong>Calidad de Software:</strong> Definición de estándares de desarrollo y estrategias de testing, manteniendo una cobertura de pruebas del 80%</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tech-tag">.NET Core 8.0</span>
-                                <span class="tech-tag">C#</span>
-                                <span class="tech-tag">Angular 18</span>
-                                <span class="tech-tag">DDD</span>
-                                <span class="tech-tag">Clean Architecture</span>
-                                <span class="tech-tag">Entity Framework</span>
-                                <span class="tech-tag">TeamCity</span>
-                                <span class="tech-tag">Azure DevOps</span>
-                                <span class="tech-tag">Docker</span>
-                                <span class="tech-tag">Unit Testing</span>
-                                <span class="tech-tag">Python</span>
+                    <div class="job-list">
+                        
+                        <div class="job">
+                            <div class="job-header">
+                                <h3>Líder Técnico & Responsable de Scrum</h3>
+                                <div class="job-company">UNIR - La Universidad en Internet</div>
+                                <div class="job-meta">
+                                    <span>📅 Feb 2020 - Presente</span>
+                                    <span>📍 Madrid</span>
+                                </div>
+                            </div>
+                            <div class="job-description">
+                                <ul>
+                                    <li><strong>Arquitectura:</strong> Diseño del núcleo del ERP Académico aplicando DDD y Clean Architecture.</li>
+                                    <li><strong>Gestión:</strong> Liderazgo de equipos Scrum, facilitando la entrega de valor y cohesión.</li>
+                                    <li><strong>DevOps:</strong> Optimización de pipelines CI/CD con TeamCity y Azure DevOps.</li>
+                                    <li><strong>Calidad:</strong> Mantenimiento de cobertura de pruebas del 80% y estándares de código.</li>
+                                </ul>
+                                <div class="tags-container">
+                                    <span class="tag">.NET Core 8</span> <span class="tag">Angular 18</span> <span class="tag">DDD</span> 
+                                    <span class="tag">Azure DevOps</span> <span class="tag">Docker</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="job">
-                        <div class="job-header">
-                            <div class="job-title">Analista .NET / Analista Funcional</div>
-                            <div class="company">SOTEC CONSULTING</div>
-                            <div class="period">Junio 2010 - Febrero 2020 (9 años 9 meses)</div>
-                            <div class="location">Madrid, España</div>
-                        </div>
-                        <div class="job-description">
-                            <ul>
-                                <li><strong>Gestión de Sistemas:</strong> Responsable del ciclo de vida de aplicaciones críticas para el negocio, asegurando su estabilidad y evolución funcional</li>
-                                <li><strong>Optimización y Mantenimiento:</strong> Mejora continua del rendimiento de aplicaciones y consultas en bases de datos Oracle, minimizando incidencias en producción</li>
-                                <li><strong>Modernización Tecnológica:</strong> Liderazgo de proyectos de migración técnica desde versiones legacy hacia entornos .NET modernos, asegurando la continuidad operativa</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tech-tag">C#</span>
-                                <span class="tech-tag">ASP.NET</span>
-                                <span class="tech-tag">Oracle</span>
-                                <span class="tech-tag">SQL Server</span>
-                                <span class="tech-tag">VB.NET</span>
-                                <span class="tech-tag">Web Services</span>
+                        <div class="job">
+                            <div class="job-header">
+                                <h3>Analista .NET / Funcional</h3>
+                                <div class="job-company">SOTEC CONSULTING</div>
+                                <div class="job-meta">
+                                    <span>📅 Jun 2010 - Feb 2020</span>
+                                    <span>📍 Madrid</span>
+                                </div>
+                            </div>
+                            <div class="job-description">
+                                <ul>
+                                    <li>Responsable del ciclo de vida de aplicaciones críticas y estabilidad del negocio.</li>
+                                    <li>Optimización de rendimiento en bases de datos Oracle y reducción de incidencias.</li>
+                                    <li>Liderazgo en migraciones de sistemas Legacy a entornos .NET modernos.</li>
+                                </ul>
+                                <div class="tags-container">
+                                    <span class="tag">C#</span> <span class="tag">ASP.NET</span> <span class="tag">Oracle</span> <span class="tag">SQL Server</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                <div class="section">
-                    <h2>Proyectos Destacados</h2>
-                    <div class="job">
-                        <div class="job-description">
-                            <p><strong>Perfil de GitHub:</strong> Desarrollo de repositorios de referencia que implementan buenas prácticas de ingeniería, arquitectura limpia y patrones de diseño modernos.</p>
-                            <div class="tech-tags" style="margin-top: 15px;">
-                                <a href="https://github.com/jesusprodriguezUnir" target="_blank" class="tech-tag" style="text-decoration: none; background: var(--primary-500); color: white; display: inline-block;">👨‍💻 Ver GitHub Profile</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
                 <div class="section">
+                    <h2>Proyectos Destacados</h2>
+                    <p style="margin-bottom: 15px; color: var(--text-main);">
+                        Desarrollo de repositorios de referencia implementando buenas prácticas de ingeniería de software, arquitectura limpia y patrones modernos.
+                    </p>
+                    <a href="https://github.com/jesusprodriguezUnir" target="_blank" class="github-btn">
+                        <span>👨‍💻</span> Ver Portfolio en GitHub
+                    </a>
+                </div>
+
+                <div class="section">
                     <h2>Educación</h2>
-                    <div class="job">
+                    <div class="job" style="margin-bottom: 0;">
                         <div class="job-header">
-                            <div class="job-title">Master en Bases de Datos</div>
-                            <div class="company">Microforum</div>
-                            <div class="period">2001 - 2002</div>
+                            <h3>Master en Bases de Datos</h3>
+                            <div class="job-company">Microforum</div>
+                            <div class="job-meta">📅 2001 - 2002</div>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="right-column">
+                
                 <div class="section">
-                    <h2>Competencias Técnicas</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h4>Frontend</h4>
-                            <div class="skill-list">
-                                <span class="skill-item">Angular</span>
-                                <span class="skill-item">JavaScript</span>
-                                <span class="skill-item">HTML5</span>
-                                <span class="skill-item">CSS3</span>
-                            </div>
+                    <h2>Skills Técnicas</h2>
+                    
+                    <div class="skill-group">
+                        <h4>Frontend</h4>
+                        <div class="pill-list">
+                            <span class="pill">Angular</span>
+                            <span class="pill">JavaScript</span>
+                            <span class="pill">HTML5/CSS3</span>
                         </div>
-                        
-                        <div class="skill-category">
-                            <h4>Backend</h4>
-                            <div class="skill-list">
-                                <span class="skill-item">.NET Core</span>
-                                <span class="skill-item">C#</span>
-                                <span class="skill-item">Python</span>
-                                <span class="skill-item">Entity Framework</span>
-                                <span class="skill-item">ASP.NET</span>
-                                <span class="skill-item">Web Services</span>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Arquitectura</h4>
-                            <div class="skill-list">
-                                <span class="skill-item">DDD</span>
-                                <span class="skill-item">Clean Architecture</span>
-                                <span class="skill-item">Microservicios</span>
-                                <span class="skill-item">Unit Testing</span>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Bases de Datos</h4>
-                            <div class="skill-list">
-                                <span class="skill-item">SQL Server</span>
-                                <span class="skill-item">Oracle</span>
-                                <span class="skill-item">PL/SQL</span>
-                                <span class="skill-item">T-SQL</span>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>DevOps & CI/CD</h4>
-                            <div class="skill-list">
-                                <span class="skill-item">TeamCity</span>
-                                <span class="skill-item">Azure DevOps</span>
-                                <span class="skill-item">Docker</span>
-                                <span class="skill-item">GitFlow</span>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Metodologías</h4>
-                            <div class="skill-list">
-                                <span class="skill-item">Scrum</span>
-                                <span class="skill-item">Kanban</span>
-                                <span class="skill-item">Agile</span>
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="skill-category">
-                            <h4>Soft Skills</h4>
-                            <div class="skill-list">
-                                <span class="skill-item">Mentoring</span>
-                                <span class="skill-item">Visión Estratégica</span>
-                                <span class="skill-item">Liderazgo</span>
-                            </div>
+                    <div class="skill-group">
+                        <h4>Backend</h4>
+                        <div class="pill-list">
+                            <span class="pill">.NET Core</span>
+                            <span class="pill">C#</span>
+                            <span class="pill">Python</span>
+                            <span class="pill">EF Core</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <h4>Arquitectura</h4>
+                        <div class="pill-list">
+                            <span class="pill">DDD</span>
+                            <span class="pill">Clean Arch</span>
+                            <span class="pill">Microservicios</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <h4>DevOps & Cloud</h4>
+                        <div class="pill-list">
+                            <span class="pill">Azure DevOps</span>
+                            <span class="pill">TeamCity</span>
+                            <span class="pill">Docker</span>
+                            <span class="pill">GitFlow</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <h4>Soft Skills</h4>
+                        <div class="pill-list">
+                            <span class="pill">Liderazgo</span>
+                            <span class="pill">Scrum/Agile</span>
+                            <span class="pill">Mentoring</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="languages">
-                    <h3>Idiomas</h3>
-                    <div class="lang-item">
-                        <span>Español</span>
-                        <span class="lang-level">Nativo</span>
-                    </div>
-                    <div class="lang-item">
-                        <span>Inglés</span>
-                        <span class="lang-level">Profesional</span>
-                    </div>
-                </div>
-                
-                <div class="certifications">
-                    <h3>Certificaciones</h3>
-                    <div class="cert-item">
-                        <div class="cert-name">Microsoft Certified: Azure Fundamentals</div>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-name">MCP 70-229: Designing and Implementing Databases with SQL Server 2000</div>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-name">70-515 TS: Web Applications Development with .NET Framework 4</div>
+
+                <div class="section">
+                    <h2>Idiomas</h2>
+                    <div class="info-box">
+                        <div class="info-item">
+                            <strong>Español</strong>
+                            <span class="info-value">Nativo</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Inglés</strong>
+                            <span class="info-value">Profesional</span>
+                        </div>
                     </div>
                 </div>
+
+                <div class="section">
+                    <h2>Certificaciones</h2>
+                    <div class="info-box">
+                        <div class="info-item" style="flex-direction: column; gap: 4px; padding: 10px 0;">
+                            <strong>Microsoft Certified: Azure Fundamentals</strong>
+                        </div>
+                        <div class="info-item" style="flex-direction: column; gap: 4px; padding: 10px 0;">
+                            <strong>MCP 70-229: SQL Server</strong>
+                        </div>
+                        <div class="info-item" style="flex-direction: column; gap: 4px; padding: 10px 0;">
+                            <strong>TS 70-515: Web Apps .NET 4</strong>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
