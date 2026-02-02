@@ -47,7 +47,7 @@
         }
         
         .container {
-            max-width: 210mm;
+            max-width: 1200px;
             margin: clamp(1.25rem, 3vw, 2.5rem) auto;
             background: white;
             box-shadow: var(--shadow-lg), 0 20px 40px rgba(0, 0, 0, 0.08);
@@ -118,8 +118,8 @@
         
         .main-content {
             display: grid;
-            grid-template-columns: minmax(400px, 1fr) minmax(280px, 320px);
-            gap: 3rem;
+            grid-template-columns: 1fr 350px;
+            gap: 4rem;
             min-height: 600px;
         }
         
@@ -129,7 +129,7 @@
         
         .right-column {
             background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-            padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2rem);
+            padding: clamp(2rem, 5vw, 3rem) clamp(2rem, 5vw, 2.5rem);
             border-left: 1px solid rgba(226, 232, 240, 0.8);
         }
         
@@ -336,9 +336,22 @@
             margin-bottom: 5px;
         }
         
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .right-column {
+                border-left: none;
+                border-top: 1px solid rgba(226, 232, 240, 0.8);
+            }
+        }
+        
         @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
             .contact-info {
@@ -426,16 +439,7 @@
     </style>
 </head>
 <body>
-    <button onclick="window.print()" id="btn-pdf" style="position:fixed;top:24px;right:24px;z-index:9999;padding:10px 22px;font-size:1em;background:#3498db;color:white;border:none;border-radius:6px;box-shadow:0 2px 8px rgba(44,62,80,0.15);cursor:pointer;transition:background 0.2s;">Exportar a PDF</button>
-    <script>
-        // Ocultar el botón al imprimir
-        window.addEventListener('beforeprint', function() {
-            document.getElementById('btn-pdf').style.display = 'none';
-        });
-        window.addEventListener('afterprint', function() {
-            document.getElementById('btn-pdf').style.display = '';
-        });
-    </script>
+
     <div class="container">
         <div class="header">
             <div class="profile-photo">
