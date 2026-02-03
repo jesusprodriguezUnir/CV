@@ -143,7 +143,7 @@
         }
 
         /* SECCIONES Y TÍTULOS */
-        .section { margin-bottom: 2.5rem; }
+        .section { margin-bottom: 2.2rem; }
 
         .section h2 {
             font-size: 1.4rem;
@@ -176,6 +176,8 @@
             margin-bottom: 2.5rem;
             font-size: 1rem;
             color: var(--primary-700);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         /* EXPERIENCIA (TIMELINE STYLE) */
@@ -251,6 +253,8 @@
             font-size: 0.75rem;
             font-weight: 500;
             transition: all 0.2s;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .tag:hover {
@@ -305,6 +309,8 @@
             border-radius: 4px;
             font-size: 0.8rem;
             font-weight: 600;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         /* IDIOMAS Y CERTIFICACIONES */
@@ -319,6 +325,7 @@
             padding: 6px 0;
             border-bottom: 1px dashed #e2e8f0;
             font-size: 0.9rem;
+            break-inside: avoid;
         }
         
         .info-item:last-child { border-bottom: none; }
@@ -344,18 +351,73 @@
         }
         
         /* PRINT */
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
+
         @media print {
-            body { background: white; }
-            .container { margin: 0; box-shadow: none; width: 100%; max-width: 100%; }
-            .header { 
-                padding: 1.5rem !important; 
-                background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%) !important; 
+            body { 
+                background: white; 
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact;
+                font-size: 13px; /* Reducción global sutil */
             }
+            .container { 
+                margin: 0; 
+                box-shadow: none; 
+                width: 100%; 
+                max-width: 100%;
+                border-radius: 0;
+                border: none;
+            }
+            .header { 
+                padding: 0.8rem 1.2rem !important; /* Estrechamiento extremo */
+                background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%) !important; 
+                gap: 1.2rem !important;
+            }
+            .header h1 { font-size: 1.6rem; margin-bottom: 2px; }
+            .header .profile-photo img { width: 70px; height: 70px; border-width: 2px; }
+            .header .title { margin-bottom: 0.3rem; font-size: 1rem; }
+            .contact-info { gap: 4px; display: flex !important; flex-wrap: wrap !important; } 
+            .contact-item > a, .contact-item > span { padding: 2px 6px; font-size: 0.75rem; }
+            
             .header h1, .header .title, .header .contact-item, .header .contact-item a { color: white !important; }
             .header::after { display: none; }
-            .main-grid { gap: 1.5rem; }
+            
+            .main-grid { 
+                display: grid !important;
+                grid-template-columns: 7fr 3fr !important;
+            }
+
+            .left-column {
+                padding: 1rem !important;
+            }
+            
+            .right-column {
+                padding: 1rem 0.6rem !important;
+            }
+
+            .section { margin-bottom: 1rem; }
+            .section h2 { margin-bottom: 0.8rem; font-size: 1.1rem; }
+            .job { margin-bottom: 0.8rem; }
+            .job-header h3 { font-size: 1rem; }
+            .summary-box { 
+                margin-bottom: 1rem; 
+                padding: 0.6rem 0.8rem; 
+                font-size: 0.9rem;
+            }
+
+            .tags-container { margin-top: 2px; gap: 3px; }
+            .tag { padding: 1px 6px; font-size: 0.65rem; }
+
+            .skill-group { padding: 0.6rem; margin-bottom: 0.6rem; }
+            .skill-group h4 { margin-bottom: 3px; font-size: 0.75rem; }
+
+            .job, .skill-group, .info-item, .section {
+                break-inside: avoid;
+            }
+
             #print-btn { display: none; }
         }
 
