@@ -1,0 +1,224 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Experience from '../components/Experience.astro';
+import Skills from '../components/Skills.astro';
+import FloatingActions from '../components/FloatingActions.astro';
+
+import { cvData } from '../data/cv.js';
+
+// Adaptamos Educacion para reusar el componente de Experiencia si quisieramos,
+// o lo renderizamos directamente ya que es simple.
+---
+
+<Layout title={`${cvData.personalInfo.name} - CV`}>
+  <div class="container fade-in">
+    <Header personalInfo={cvData.personalInfo} />
+    
+    <div class="main-grid">
+      <div class="left-column glass">
+        <div class="summary-box fade-in">
+          <strong>Perfil Profesional:</strong> {cvData.summary}
+        </div>
+        
+        <div class="section fade-in" style="animation-delay: 0.1s;">
+          <h2>Experiencia Profesional</h2>
+          <Experience jobs={cvData.experience} />
+        </div>
+
+        <div class="section fade-in" style="animation-delay: 0.2s;">
+          <h2>Proyectos Destacados</h2>
+          <p class="desc-text">
+            Desarrollo de repositorios de referencia implementando buenas prácticas de ingeniería de software, arquitectura limpia y patrones modernos.
+          </p>
+          <a href={cvData.personalInfo.github} target="_blank" class="github-btn">
+            <span>👨‍💻</span> Ver Portfolio en GitHub
+          </a>
+        </div>
+
+        <div class="section fade-in" style="animation-delay: 0.3s;">
+          <h2>Educación</h2>
+          {cvData.education.map(edu => (
+            <div class="job-card">
+              <div class="job-header">
+                <h3>{edu.title}</h3>
+                <div class="job-company">{edu.institution}</div>
+                <div class="job-meta">
+                  <span>📅 {edu.period}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <div class="right-column glass">
+        <div class="section fade-in" style="animation-delay: 0.1s;">
+          <h2>Skills Técnicas</h2>
+          <Skills skillGroups={cvData.skills} />
+        </div>
+
+        <div class="section fade-in" style="animation-delay: 0.2s;">
+          <h2>Idiomas</h2>
+          <div class="info-box">
+            {cvData.languages.map(lang => (
+              <div class="info-item">
+                <strong>{lang.language}</strong>
+                <span class="info-value">{lang.level}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="section fade-in" style="animation-delay: 0.3s;">
+          <h2>Certificaciones</h2>
+          <div class="info-box">
+            {cvData.certifications.map(cert => (
+              <div class="info-item cert-item">
+                <strong>{cert}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <FloatingActions />
+</Layout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 15px;
+  }
+
+  .main-grid {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .left-column {
+    padding: 2.5rem;
+  }
+
+  .right-column {
+    padding: 2.5rem 1.5rem;
+  }
+
+  /* Secciones y títulos */
+  .section { margin-bottom: 2.5rem; }
+
+  .section h2 {
+    font-size: 1.3rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--border-color);
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+
+  .section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--primary);
+  }
+
+  /* Summary box */
+  .summary-box {
+    background: rgba(59, 130, 246, 0.05); /* very light primary variant */
+    border-left: 4px solid var(--primary);
+    padding: 1.5rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+    color: var(--text-main);
+  }
+
+  /* Text styles */
+  .desc-text {
+    margin-bottom: 15px;
+    color: var(--text-muted);
+  }
+
+  /* Education block */
+  .job-card {
+    margin-bottom: 1rem;
+    padding-left: 15px;
+    border-left: 2px solid var(--border-color);
+  }
+
+  .job-header h3 { font-size: 1.15rem; font-weight: 600; color: var(--text-main); }
+  .job-company { color: var(--primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+  .job-meta { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* Info items (Languages, Certs) */
+  .info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+    font-size: 0.95rem;
+  }
+  
+  .info-item:last-child { border-bottom: none; }
+  .info-value { color: var(--text-muted); font-size: 0.85rem; background: var(--bg-color); padding: 4px 8px; border-radius: 4px;}
+  .cert-item { padding: 12px 0; justify-content: flex-start; }
+
+  /* Botón Github */
+  .github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .github-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  /* Responsive */
+  @media (max-width: 950px) {
+    .main-grid { grid-template-columns: 1fr; gap: 20px;}
+  }
+
+  @media print {
+    body { font-size: 13px; }
+    .container { margin: 0; padding: 0; max-width: 100%; gap: 10px; }
+    .main-grid { display: grid; grid-template-columns: 7fr 3fr; gap: 15px; }
+    .left-column, .right-column { padding: 0.5rem; background: transparent; border: none; box-shadow: none; }
+    .left-column { border-right: 1px solid #ccc; padding-right: 1rem; }
+    .section, .summary-box { margin-bottom: 1.5rem; }
+    .section h2 { margin-bottom: 1rem; font-size: 1.1rem; }
+  }
+</style>

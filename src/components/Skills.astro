@@ -1,0 +1,70 @@
+---
+const { skillGroups } = Astro.props;
+---
+<div class="skills-container fade-in">
+  {skillGroups.map(group => (
+    <div class="skill-group glass">
+      <h4>{group.category}</h4>
+      <div class="pill-list">
+        {group.items.map(item => (
+          <span class="pill">{item}</span>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .skill-group {
+    padding: 1.2rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .skill-group:hover {
+    transform: translateY(-2px);
+  }
+
+  .skill-group h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pill {
+    background: var(--bg-color);
+    color: var(--primary);
+    border: 1px solid var(--border-color);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  
+  .pill:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  @media print {
+    .skills-container { gap: 0.6rem; }
+    .skill-group { padding: 0.6rem; break-inside: avoid; }
+    .pill { padding: 2px 8px; font-size: 0.8rem; }
+  }
+</style>

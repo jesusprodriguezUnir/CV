@@ -1,0 +1,98 @@
+:root {
+  /* Developer Theme - Light */
+  --bg-color: #f8fafc;
+  --surface-color: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --primary: #2563eb; 
+  --primary-hover: #1d4ed8;
+  --border-color: #e2e8f0;
+  
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+  --radius: 12px;
+}
+
+[data-theme="dark"] {
+  /* Developer Theme - Dark */
+  --bg-color: #0f172a; /* Slate 900 */
+  --surface-color: #1e293b; /* Slate 800 */
+  --text-main: #f8fafc; /* Slate 50 */
+  --text-muted: #94a3b8; /* Slate 400 */
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --border-color: #334155;
+  
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
+  
+  /* Sutil grid de fondo estilo dev */
+  --grid-color: rgba(255, 255, 255, 0.03);
+}
+
+:root:not([data-theme="dark"]) {
+  /* Sutil grid en light */
+  --grid-color: rgba(0, 0, 0, 0.03);
+}
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+  font-size: 15px;
+  
+  /* Patrón de puntos técnico */
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Glassmorphism effect utility */
+.glass {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Animaciones UI */
+.fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12px;
+  }
+  .glass {
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+  }
+}

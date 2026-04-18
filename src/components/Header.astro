@@ -1,0 +1,124 @@
+---
+const { personalInfo } = Astro.props;
+---
+
+<header class="header glass fade-in">
+  <div class="profile-photo">
+    <img 
+      src={personalInfo.avatar} 
+      alt={personalInfo.name} 
+      onerror="this.src='https://ui-avatars.com/api/?name=Jesus+Pedro&background=random&size=128'" 
+    />
+  </div>
+  <div class="header-content">
+    <h1>{personalInfo.name}</h1>
+    <div class="title">{personalInfo.role}</div>
+    <div class="contact-info">
+      <div class="contact-item">
+        <a href={`mailto:${personalInfo.email}`}>
+          ✉️ {personalInfo.email}
+        </a>
+      </div>
+      <div class="contact-item">
+        <a href={personalInfo.linkedin} target="_blank">
+          💼 LinkedIn
+        </a>
+      </div>
+      <div class="contact-item">
+        <a href={personalInfo.github} target="_blank">
+          💻 GitHub
+        </a>
+      </div>
+      <div class="contact-item">
+        <span>📱 {personalInfo.phone}</span>
+      </div>
+      <div class="contact-item">
+        <span>📍 {personalInfo.location}</span>
+      </div>
+    </div>
+  </div>
+</header>
+<style>
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-photo img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+    object-fit: cover;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-content {
+    flex: 1;
+    z-index: 1;
+  }
+
+  .header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .header .title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--primary);
+    margin-bottom: 1.2rem;
+    display: inline-block;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .contact-item > a, .contact-item > span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+  }
+
+  .contact-item a:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  @media (max-width: 850px) {
+    .header {
+      flex-direction: column;
+      text-align: center;
+    }
+    .contact-info {
+      justify-content: center;
+    }
+  }
+
+  @media print {
+    .header {
+      padding: 1rem !important;
+      gap: 1rem !important;
+      margin-bottom: 1rem !important;
+    }
+    .header h1 { font-size: 1.6rem; }
+    .profile-photo img { width: 80px; height: 80px; }
+  }
+</style>

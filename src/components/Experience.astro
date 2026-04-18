@@ -1,0 +1,118 @@
+---
+const { jobs } = Astro.props;
+---
+<div class="job-list">
+  {jobs.map((job) => (
+    <div class="job fade-in">
+      <div class="job-header">
+        <h3>{job.role}</h3>
+        <div class="job-company">{job.company}</div>
+        <div class="job-meta">
+          <span>📅 {job.period}</span>
+          <span>📍 {job.location}</span>
+        </div>
+      </div>
+      <div class="job-description">
+        <ul>
+          {job.description.map((desc) => (
+            <li>{desc}</li>
+          ))}
+        </ul>
+        {job.tags && (
+          <div class="tags-container">
+            {job.tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+        )}
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .job-list {
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid var(--border-color);
+  }
+
+  .job {
+    position: relative;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Timeline dot */
+  .job::before {
+    content: '';
+    position: absolute;
+    left: -26px; /* Offset to center on line */
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--surface-color);
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 0 4px var(--bg-color); /* Cutout effect */
+  }
+
+  .job-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+
+  .job-company {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .job-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    gap: 15px;
+  }
+
+  .job-description ul {
+    padding-left: 18px;
+    margin-bottom: 12px;
+  }
+
+  .job-description li {
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    list-style-type: square;
+    color: var(--text-main);
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-1px);
+  }
+
+  @media print {
+    .job { margin-bottom: 1rem; break-inside: avoid; }
+    .job-description li { font-size: 0.9rem; }
+  }
+</style>

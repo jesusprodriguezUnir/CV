@@ -1,0 +1,81 @@
+---
+---
+<button id="print-btn" onclick="window.print()" title="Descargar como PDF">
+  <span class="icon">🖨️</span> <span class="text">PDF</span>
+</button>
+
+<button id="theme-toggle" title="Cambiar Tema">
+  <span class="icon">🌓</span> 
+</button>
+
+<script>
+  const themeToggle = document.getElementById('theme-toggle');
+  
+  themeToggle?.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+
+  // Asegura la UI consistente después de navegación client-side en Astro (ViewTransitions) si se llegaran a usar
+  document.addEventListener('astro:after-swap', () => {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  });
+</script>
+
+<style>
+  #print-btn, #theme-toggle {
+    position: fixed;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+    font-family: inherit;
+  }
+
+  #print-btn {
+    bottom: 30px;
+    right: 30px;
+    padding: 12px 24px;
+  }
+  
+  #theme-toggle {
+    bottom: 90px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    font-size: 1.2rem;
+  }
+
+  #print-btn:hover, #theme-toggle:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: var(--primary-hover);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 600px) {
+    #print-btn .text { display: none; }
+    #print-btn { padding: 12px; width: 48px; height: 48px; border-radius: 50%; }
+  }
+
+  @media print {
+    #print-btn, #theme-toggle { display: none !important; }
+  }
+</style>
