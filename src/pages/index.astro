@@ -568,6 +568,106 @@ const photoSrc = `${base}jesus_premium.png`;
         flex: 1;
       }
 
+      /* FEATURED PROJECTS RE-STYLED */
+      .projects-featured {
+        background: var(--bg-2);
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+        margin-top: 10px;
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+      }
+      .feat-header {
+        background: var(--bg-3);
+        padding: 8px 16px;
+        border-bottom: 1px solid var(--rule);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 11px;
+        color: var(--muted);
+        font-family: var(--mono);
+        letter-spacing: 0.05em;
+      }
+      .feat-header .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--rule);
+      }
+      .featured-content {
+        padding: 30px;
+      }
+      .featured-content p {
+        font-family: var(--sans);
+        font-size: 18px;
+        line-height: 1.6;
+        color: var(--fg);
+        margin-bottom: 30px;
+        max-width: 850px;
+        position: relative;
+        padding-left: 24px;
+      }
+      .featured-content p::before {
+        content: "“";
+        position: absolute;
+        left: -10px;
+        top: -10px;
+        font-size: 60px;
+        color: var(--accent);
+        opacity: 0.2;
+        font-family: serif;
+      }
+      .github-action {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .github-action .prompt-prefix {
+        color: var(--accent);
+        font-family: var(--mono);
+        font-weight: bold;
+        font-size: 18px;
+        animation: pulse 1.5s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+      .github-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, var(--bg-3), var(--bg-2));
+        border: 1px solid var(--accent);
+        border-radius: 50px;
+        color: var(--accent);
+        font-family: var(--mono);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 12px;
+        transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        box-shadow: 0 0 0 rgba(74, 222, 128, 0);
+      }
+      .github-link:hover {
+        background: var(--accent);
+        color: var(--bg);
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 10px 20px -5px rgba(74, 222, 128, 0.4);
+      }
+      .github-link .icon {
+        font-size: 18px;
+      }
+      
+      @media (max-width: 600px) {
+        .featured-content { padding: 20px; }
+        .featured-content p { font-size: 15px; }
+        .github-link { padding: 12px 20px; width: 100%; justify-content: center; }
+      }
+
       /* TESTIMONIALS */
       .quotes {
         display: grid;
@@ -971,10 +1071,26 @@ const photoSrc = `${base}jesus_premium.png`;
             <span class="cmd">ls ./projects --tree</span>
           </div>
           <div class="section-head">
-            <h2 data-i18n="titles.projects">Proyectos</h2>
-            <span class="meta">// trabajo seleccionado</span>
+            <h2 data-i18n="titles.projects">Proyectos Destacados</h2>
+            <span class="meta">// engineering excellence</span>
           </div>
-          <div class="projects" id="projects-grid"></div>
+          <div class="projects-featured">
+            <div class="feat-header">
+              <span class="dot"></span>
+              <span class="file-name">engineering_manifesto.md</span>
+            </div>
+            <div class="featured-content">
+              <p data-cv="projects_desc"></p>
+              <div class="github-action">
+                <span class="prompt-prefix">></span>
+                <a href="https://github.com/jesusprodriguezUnir" target="_blank" class="github-link">
+                  <span class="icon">👨‍💻</span>
+                  <span class="text" data-cv="github_cta">Ver Portfolio en GitHub</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="projects" id="projects-grid" style="display:none"></div>
         </section>
 
         <!-- INFO -->
@@ -1086,6 +1202,7 @@ const photoSrc = `${base}jesus_premium.png`;
                   "Optimización del ciclo de vida de desarrollo mediante el uso avanzado de GitHub Copilot (experiencia de +3 años).",
                   "Liderazgo: Implementación de mejores prácticas, capacitación técnica a desarrolladores y resolución ágil de incidencias críticas (hotfixes).",
                   "Mantenimiento de cobertura de pruebas del 80% y de un código que se entiende solo.",
+                  "Automatización de flujos de trabajo e integraciones de sistemas mediante n8n.",
                 ],
                 en: [
                   "Development & Integration: Development of academic applications using .NET (C#) and Python under DDD architecture.",
@@ -1098,9 +1215,11 @@ const photoSrc = `${base}jesus_premium.png`;
                   "Optimizing SDLC through advanced use of GitHub Copilot (+3 years experience).",
                   "Leadership: Best practices implementation, technical training for developers, and agile resolution of critical incidents (hotfixes).",
                   "Sustained 80% test coverage and code that explains itself.",
+                  "Workflow automation and system integrations using n8n.",
                 ],
               },
               tags: [
+                "n8n",
                 "GenAI",
                 "Claude",
                 "GitHub Copilot",
@@ -1200,6 +1319,7 @@ const photoSrc = `${base}jesus_premium.png`;
                 "GitFlow",
                 "Azure",
                 "SonarQube",
+                "n8n",
               ],
             },
             {
@@ -1333,7 +1453,7 @@ const photoSrc = `${base}jesus_premium.png`;
                 philosophy: "Cómo trabajo",
                 work: "Trayectoria",
                 skills: "Skills",
-                projects: "Proyectos",
+                projects: "Proyectos Destacados",
                 words: "Lo que dicen",
                 contact: "Contacto",
                 education: "Formación",
@@ -1344,7 +1464,7 @@ const photoSrc = `${base}jesus_premium.png`;
                 philosophy: "How I work",
                 work: "Experience",
                 skills: "Skills",
-                projects: "Projects",
+                projects: "Featured Projects",
                 words: "Kind words",
                 contact: "Contact",
                 education: "Education",
@@ -1374,6 +1494,17 @@ const photoSrc = `${base}jesus_premium.png`;
           document.querySelector('[data-cv="role"]').textContent = CV.role[L];
           document.querySelector('[data-cv="summary"]').textContent =
             CV.summary[L];
+
+          const pDesc = {
+            es: "Desarrollo de repositorios de referencia implementando buenas prácticas de ingeniería de software, arquitectura limpia y patrones modernos.",
+            en: "Development of reference repositories implementing software engineering best practices, clean architecture, and modern patterns."
+          };
+          const gCta = {
+            es: "Ver Portfolio en GitHub",
+            en: "View Portfolio on GitHub"
+          };
+          document.querySelector('[data-cv="projects_desc"]').textContent = pDesc[L];
+          document.querySelector('[data-cv="github_cta"]').textContent = gCta[L];
 
           document.getElementById("stats").innerHTML = CV.stats
             .map(

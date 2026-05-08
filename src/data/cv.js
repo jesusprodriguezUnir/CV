@@ -18,11 +18,11 @@ export const cvData = {
       location: "Madrid",
       description: [
         "Desarrollo e Integración: Desarrollo de lógica de negocio en ERP Académico utilizando .NET (C#) y Python bajo arquitectura DDD. Implementación de microservicios y entornos utilizando Docker para asegurar la consistencia entre desarrollo y producción.",
-        "DevOps & Automatización: Administración de pipelines de CI/CD en TeamCity y Azure DevOps. Creación de scripts en Python para automatizar tareas de despliegue y mantenimiento.",
+        "DevOps & Automatización: Administración de pipelines de CI/CD en TeamCity y Azure DevOps. Creación de scripts en Python y flujos en n8n para automatizar tareas de despliegue y mantenimiento.",
         "Calidad de Código (QA): Garantía de calidad mediante Pruebas Unitarias y análisis estático de código con SonarQube. Gestión de control de cambios estricto a través de Pull Requests y flujo GitFlow.",
         "Liderazgo: Implementación de mejores prácticas, capacitación técnica a desarrolladores y resolución ágil de incidencias críticas (hotfixes)."
       ],
-      tags: ["Angular 18", ".NET 8", "Python", "Docker", "TeamCity", "Azure DevOps", "SonarQube", "DDD", "Mediator Pattern"]
+      tags: ["n8n", "Angular 18", ".NET 8", "Python", "Docker", "TeamCity", "Azure DevOps", "SonarQube", "DDD", "Mediator Pattern"]
     },
     {
       role: "Analista .NET / Funcional",
@@ -46,7 +46,7 @@ export const cvData = {
   ],
   skills: [
     { category: "Stack Tecnológico", items: ["Angular 18", ".NET 8", "Python", "Docker"] },
-    { category: "CI/CD & Calidad", items: ["TeamCity", "Azure DevOps", "SonarQube"] },
+    { category: "CI/CD & Calidad", items: ["TeamCity", "Azure DevOps", "SonarQube", "n8n"] },
     { category: "Arquitectura", items: ["DDD", "Mediator Pattern", "Clean Architecture", "Microservicios"] },
     { category: "Soft Skills", items: ["Liderazgo", "Scrum/Agile", "Mentoring"] }
   ],
