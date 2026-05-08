@@ -2,949 +2,1390 @@
 const base = import.meta.env.BASE_URL;
 const photoSrc = `${base}jesus_premium.png`;
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>jrodriguez ~ /cv $ — Terminal</title>
-<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<style is:global>
-  :root {
-    --bg: #0a0d0c;
-    --bg-2: #11161a;
-    --bg-3: #161c20;
-    --fg: #d8e3da;
-    --fg-2: #8a9a90;
-    --muted: #5a6660;
-    --rule: #1f2a2e;
-    --accent: #4ade80;
-    --accent-2: #f59e0b;
-    --accent-3: #38bdf8;
-    --danger: #f87171;
-    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-    --sans: "IBM Plex Sans", -apple-system, system-ui, sans-serif;
-  }
-  [data-theme="light"] {
-    --bg: #f3f1ec;
-    --bg-2: #e8e6df;
-    --bg-3: #ddd9cf;
-    --fg: #161816;
-    --fg-2: #3e4540;
-    --muted: #6b736d;
-    --rule: #cfcbc1;
-    --accent: #16a34a;
-    --accent-2: #b45309;
-    --accent-3: #0369a1;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--mono);
-    background: var(--bg);
-    color: var(--fg);
-    font-size: 14px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    background-image:
-      linear-gradient(var(--rule) 1px, transparent 1px),
-      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
-    background-size: 32px 32px;
-    background-position: -1px -1px;
-    transition: background-color .25s;
-  }
-  a { color: inherit; text-decoration: none; }
-  ::selection { background: var(--accent); color: var(--bg); }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jrodriguez ~ /cv $ — Terminal</title>
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      :root {
+        --bg: #0a0d0c;
+        --bg-2: #11161a;
+        --bg-3: #161c20;
+        --fg: #d8e3da;
+        --fg-2: #8a9a90;
+        --muted: #5a6660;
+        --rule: #1f2a2e;
+        --accent: #4ade80;
+        --accent-2: #f59e0b;
+        --accent-3: #38bdf8;
+        --danger: #f87171;
+        --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+        --sans: "IBM Plex Sans", -apple-system, system-ui, sans-serif;
+      }
+      [data-theme="light"] {
+        --bg: #f3f1ec;
+        --bg-2: #e8e6df;
+        --bg-3: #ddd9cf;
+        --fg: #161816;
+        --fg-2: #3e4540;
+        --muted: #6b736d;
+        --rule: #cfcbc1;
+        --accent: #16a34a;
+        --accent-2: #b45309;
+        --accent-3: #0369a1;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--mono);
+        background: var(--bg);
+        color: var(--fg);
+        font-size: 14px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        background-image:
+          linear-gradient(var(--rule) 1px, transparent 1px),
+          linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+        background-size: 32px 32px;
+        background-position: -1px -1px;
+        transition: background-color 0.25s;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ::selection {
+        background: var(--accent);
+        color: var(--bg);
+      }
 
-  /* WINDOW CHROME */
-  .window {
-    max-width: 1200px;
-    margin: 28px auto;
-    background: var(--bg-2);
-    border: 1px solid var(--rule);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 30px 60px -20px rgba(0,0,0,.5);
-  }
-  .titlebar {
-    display: flex; align-items: center; gap: 12px;
-    padding: 10px 14px;
-    background: var(--bg-3);
-    border-bottom: 1px solid var(--rule);
-    position: sticky; top: 0; z-index: 30;
-  }
-  .dots { display: flex; gap: 6px; }
-  .dot { width: 12px; height: 12px; border-radius: 50%; }
-  .dot.r { background: #ff5f56; }
-  .dot.y { background: #ffbd2e; }
-  .dot.g { background: #27c93f; }
-  .titlebar .path {
-    flex: 1;
-    text-align: center;
-    color: var(--fg-2);
-    font-size: 12px;
-    letter-spacing: .04em;
-  }
-  .titlebar .path .at { color: var(--accent); }
-  .titlebar .path .where { color: var(--accent-3); }
-  .actions { display: flex; gap: 6px; }
-  .btn {
-    background: transparent;
-    color: var(--fg-2);
-    border: 1px solid var(--rule);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-family: var(--mono);
-    font-size: 11px;
-    cursor: pointer;
-    letter-spacing: .04em;
-    transition: all .15s;
-  }
-  .btn:hover { border-color: var(--accent); color: var(--accent); }
+      /* WINDOW CHROME */
+      .window {
+        max-width: 1200px;
+        margin: 28px auto;
+        background: var(--bg-2);
+        border: 1px solid var(--rule);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+      }
+      .titlebar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        background: var(--bg-3);
+        border-bottom: 1px solid var(--rule);
+        position: sticky;
+        top: 0;
+        z-index: 30;
+      }
+      .dots {
+        display: flex;
+        gap: 6px;
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+      .dot.r {
+        background: #ff5f56;
+      }
+      .dot.y {
+        background: #ffbd2e;
+      }
+      .dot.g {
+        background: #27c93f;
+      }
+      .titlebar .path {
+        flex: 1;
+        text-align: center;
+        color: var(--fg-2);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+      }
+      .titlebar .path .at {
+        color: var(--accent);
+      }
+      .titlebar .path .where {
+        color: var(--accent-3);
+      }
+      .actions {
+        display: flex;
+        gap: 6px;
+      }
+      .btn {
+        background: transparent;
+        color: var(--fg-2);
+        border: 1px solid var(--rule);
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-family: var(--mono);
+        font-size: 11px;
+        cursor: pointer;
+        letter-spacing: 0.04em;
+        transition: all 0.15s;
+      }
+      .btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
 
-  .terminal { padding: 32px 40px 60px; }
+      .terminal {
+        padding: 32px 40px 60px;
+      }
 
-  /* PROMPT / HEADERS */
-  .prompt {
-    font-size: 13px;
-    color: var(--fg-2);
-    margin-bottom: 8px;
-    letter-spacing: .02em;
-  }
-  .prompt .user { color: var(--accent); }
-  .prompt .at { color: var(--muted); }
-  .prompt .host { color: var(--accent-3); }
-  .prompt .colon { color: var(--muted); }
-  .prompt .pwd { color: var(--accent-2); }
-  .prompt .dollar { color: var(--fg); margin-right: 6px; }
-  .prompt .cmd { color: var(--fg); }
+      /* PROMPT / HEADERS */
+      .prompt {
+        font-size: 13px;
+        color: var(--fg-2);
+        margin-bottom: 8px;
+        letter-spacing: 0.02em;
+      }
+      .prompt .user {
+        color: var(--accent);
+      }
+      .prompt .at {
+        color: var(--muted);
+      }
+      .prompt .host {
+        color: var(--accent-3);
+      }
+      .prompt .colon {
+        color: var(--muted);
+      }
+      .prompt .pwd {
+        color: var(--accent-2);
+      }
+      .prompt .dollar {
+        color: var(--fg);
+        margin-right: 6px;
+      }
+      .prompt .cmd {
+        color: var(--fg);
+      }
 
-  .response { margin-bottom: 36px; }
+      .response {
+        margin-bottom: 36px;
+      }
 
-  .ascii {
-    color: var(--accent);
-    font-size: 11px;
-    line-height: 1.1;
-    white-space: pre;
-    margin-bottom: 18px;
-    overflow-x: auto;
-  }
+      .ascii {
+        color: var(--accent);
+        font-size: 11px;
+        line-height: 1.1;
+        white-space: pre;
+        margin-bottom: 18px;
+        overflow-x: auto;
+      }
 
-  /* HERO */
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 36px;
-    align-items: start;
-    margin-bottom: 30px;
-  }
-  .hero h1 {
-    font-family: var(--mono);
-    font-weight: 600;
-    font-size: clamp(36px, 5vw, 56px);
-    line-height: 1.05;
-    letter-spacing: -.02em;
-    margin-bottom: 14px;
-  }
-  .hero h1 .caret {
-    display: inline-block;
-    background: var(--accent);
-    width: .55em; height: 1em;
-    margin-left: 6px;
-    transform: translateY(.1em);
-    animation: blink 1.1s steps(2) infinite;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-  .role-strip {
-    display: inline-block;
-    background: var(--bg-3);
-    border: 1px solid var(--rule);
-    border-left: 3px solid var(--accent);
-    padding: 6px 14px;
-    font-size: 13px;
-    margin-bottom: 18px;
-  }
-  .role-strip .label { color: var(--muted); }
-  .role-strip .val { color: var(--accent); margin-left: 8px; }
+      /* HERO */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 280px;
+        gap: 36px;
+        align-items: start;
+        margin-bottom: 30px;
+      }
+      .hero h1 {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: clamp(36px, 5vw, 56px);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+      }
+      .hero h1 .caret {
+        display: inline-block;
+        background: var(--accent);
+        width: 0.55em;
+        height: 1em;
+        margin-left: 6px;
+        transform: translateY(0.1em);
+        animation: blink 1.1s steps(2) infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+      .role-strip {
+        display: inline-block;
+        background: var(--bg-3);
+        border: 1px solid var(--rule);
+        border-left: 3px solid var(--accent);
+        padding: 6px 14px;
+        font-size: 13px;
+        margin-bottom: 18px;
+      }
+      .role-strip .label {
+        color: var(--muted);
+      }
+      .role-strip .val {
+        color: var(--accent);
+        margin-left: 8px;
+      }
 
-  .summary-box {
-    border: 1px dashed var(--rule);
-    background: var(--bg);
-    padding: 18px 20px;
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--fg-2);
-    border-radius: 4px;
-  }
-  .summary-box::before {
-    content: "// ";
-    color: var(--muted);
-  }
+      .summary-box {
+        border: 1px dashed var(--rule);
+        background: var(--bg);
+        padding: 18px 20px;
+        font-family: var(--sans);
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--fg-2);
+        border-radius: 4px;
+      }
+      .summary-box::before {
+        content: "// ";
+        color: var(--muted);
+      }
 
-  .hero-photo {
-    position: relative;
-    aspect-ratio: 1 / 1.1;
-    border: 1px solid var(--rule);
-    background: var(--bg-3);
-    overflow: hidden;
-  }
-  .hero-photo img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    filter: saturate(1.1) contrast(1.05);
-    transition: filter 0.3s ease;
-  }
-  .hero-photo:hover img {
-    filter: saturate(1.2) contrast(1.1);
-  }
-  .hero-photo::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 70%, var(--bg-3) 100%);
-    pointer-events: none;
-  }
-  .hero-photo .scanlines {
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px);
-    pointer-events: none;
-    opacity: .6;
-  }
-  .hero-photo .badge {
-    position: absolute; left: 10px; bottom: 10px;
-    font-size: 10px; color: var(--accent);
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    background: rgba(0,0,0,.5);
-    padding: 4px 8px;
-    border: 1px solid var(--accent);
-    border-radius: 2px;
-  }
+      .hero-photo {
+        position: relative;
+        aspect-ratio: 1 / 1.1;
+        border: 1px solid var(--rule);
+        background: var(--bg-3);
+        overflow: hidden;
+      }
+      .hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(1.1) contrast(1.05);
+        transition: filter 0.3s ease;
+      }
+      .hero-photo:hover img {
+        filter: saturate(1.2) contrast(1.1);
+      }
+      .hero-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 70%, var(--bg-3) 100%);
+        pointer-events: none;
+      }
+      .hero-photo .scanlines {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.18) 0 1px,
+          transparent 1px 3px
+        );
+        pointer-events: none;
+        opacity: 0.6;
+      }
+      .hero-photo .badge {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        font-size: 10px;
+        color: var(--accent);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 4px 8px;
+        border: 1px solid var(--accent);
+        border-radius: 2px;
+      }
 
-  /* STATS ROW */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin: 20px 0 10px;
-  }
-  .stat {
-    border: 1px solid var(--rule);
-    background: var(--bg);
-    padding: 14px 16px;
-    border-radius: 6px;
-  }
-  .stat .v {
-    font-family: var(--mono);
-    font-weight: 600;
-    font-size: 26px;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat .k {
-    font-size: 11px;
-    color: var(--fg-2);
-    letter-spacing: .02em;
-  }
+      /* STATS ROW */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin: 20px 0 10px;
+      }
+      .stat {
+        border: 1px solid var(--rule);
+        background: var(--bg);
+        padding: 14px 16px;
+        border-radius: 6px;
+      }
+      .stat .v {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 26px;
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .stat .k {
+        font-size: 11px;
+        color: var(--fg-2);
+        letter-spacing: 0.02em;
+      }
 
-  /* SECTIONS */
-  section { margin-top: 50px; }
-  .section-head {
-    display: flex; align-items: baseline; gap: 12px;
-    margin-bottom: 18px;
-    border-bottom: 1px dashed var(--rule);
-    padding-bottom: 10px;
-  }
-  .section-head h2 {
-    font-family: var(--mono);
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--fg);
-  }
-  .section-head h2::before { content: "## "; color: var(--accent); }
-  .section-head .meta { color: var(--muted); font-size: 12px; }
+      /* SECTIONS */
+      section {
+        margin-top: 50px;
+      }
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 18px;
+        border-bottom: 1px dashed var(--rule);
+        padding-bottom: 10px;
+      }
+      .section-head h2 {
+        font-family: var(--mono);
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--fg);
+      }
+      .section-head h2::before {
+        content: "## ";
+        color: var(--accent);
+      }
+      .section-head .meta {
+        color: var(--muted);
+        font-size: 12px;
+      }
 
-  /* EXPERIENCE */
-  .job {
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    margin-bottom: 14px;
-    overflow: hidden;
-  }
-  .job-bar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 14px;
-    background: var(--bg-3);
-    border-bottom: 1px solid var(--rule);
-    font-size: 12px;
-    color: var(--fg-2);
-  }
-  .job-bar .name { color: var(--accent); }
-  .job-body { padding: 18px 22px; font-family: var(--sans); }
-  .job-body h3 {
-    font-family: var(--mono);
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-  .job-body .co {
-    color: var(--accent-3);
-    font-family: var(--mono);
-    font-size: 13px;
-    margin-bottom: 4px;
-  }
-  .job-body .when {
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 12px;
-    margin-bottom: 14px;
-  }
-  .job-body ul { list-style: none; padding: 0; margin-bottom: 12px; }
-  .job-body li {
-    padding-left: 22px;
-    position: relative;
-    margin-bottom: 6px;
-    color: var(--fg-2);
-    font-size: 14px;
-  }
-  .job-body li::before {
-    content: "▸";
-    position: absolute; left: 0;
-    color: var(--accent);
-  }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-  .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    background: var(--bg-3);
-    color: var(--accent);
-    border: 1px solid var(--rule);
-    padding: 3px 9px;
-    border-radius: 3px;
-  }
-  .tag::before { content: "#"; opacity: .5; margin-right: 2px; }
+      /* EXPERIENCE */
+      .job {
+        background: var(--bg);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        margin-bottom: 14px;
+        overflow: hidden;
+      }
+      .job-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 14px;
+        background: var(--bg-3);
+        border-bottom: 1px solid var(--rule);
+        font-size: 12px;
+        color: var(--fg-2);
+      }
+      .job-bar .name {
+        color: var(--accent);
+      }
+      .job-body {
+        padding: 18px 22px;
+        font-family: var(--sans);
+      }
+      .job-body h3 {
+        font-family: var(--mono);
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .job-body .co {
+        color: var(--accent-3);
+        font-family: var(--mono);
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+      .job-body .when {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 12px;
+        margin-bottom: 14px;
+      }
+      .job-body ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 12px;
+      }
+      .job-body li {
+        padding-left: 22px;
+        position: relative;
+        margin-bottom: 6px;
+        color: var(--fg-2);
+        font-size: 14px;
+      }
+      .job-body li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .tag {
+        font-family: var(--mono);
+        font-size: 11px;
+        background: var(--bg-3);
+        color: var(--accent);
+        border: 1px solid var(--rule);
+        padding: 3px 9px;
+        border-radius: 3px;
+      }
+      .tag::before {
+        content: "#";
+        opacity: 0.5;
+        margin-right: 2px;
+      }
 
-  /* SKILLS */
-  .filter-row {
-    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
-  }
-  .chip {
-    background: var(--bg-3);
-    border: 1px solid var(--rule);
-    color: var(--fg-2);
-    padding: 5px 12px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-family: var(--mono);
-    cursor: pointer;
-    transition: all .15s;
-  }
-  .chip:hover { color: var(--accent); border-color: var(--accent); }
-  .chip.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+      /* SKILLS */
+      .filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+      .chip {
+        background: var(--bg-3);
+        border: 1px solid var(--rule);
+        color: var(--fg-2);
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-family: var(--mono);
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .chip:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      .chip.active {
+        background: var(--accent);
+        color: var(--bg);
+        border-color: var(--accent);
+      }
 
-  .skill-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-  .skill-card {
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 16px 18px;
-    transition: opacity .25s, transform .15s;
-  }
-  .skill-card.is-hidden { display: none; }
-  .skill-card .cat {
-    display: flex; align-items: center; gap: 8px;
-    color: var(--accent-2);
-    font-size: 12px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .skill-card .cat::before {
-    content: "▶"; color: var(--accent); font-size: 10px;
-  }
-  .skill-card .items {
-    display: flex; flex-wrap: wrap; gap: 6px;
-  }
-  .skill-card .items span {
-    background: var(--bg-3);
-    border: 1px solid var(--rule);
-    padding: 3px 9px;
-    border-radius: 3px;
-    font-size: 12px;
-  }
+      .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .skill-card {
+        background: var(--bg);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 16px 18px;
+        transition:
+          opacity 0.25s,
+          transform 0.15s;
+      }
+      .skill-card.is-hidden {
+        display: none;
+      }
+      .skill-card .cat {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--accent-2);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .skill-card .cat::before {
+        content: "▶";
+        color: var(--accent);
+        font-size: 10px;
+      }
+      .skill-card .items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .skill-card .items span {
+        background: var(--bg-3);
+        border: 1px solid var(--rule);
+        padding: 3px 9px;
+        border-radius: 3px;
+        font-size: 12px;
+      }
 
-  /* PROJECTS */
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-  .project {
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 18px 20px;
-    transition: border-color .15s, transform .15s;
-    position: relative;
-    display: flex; flex-direction: column;
-  }
-  .project:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .project .head {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 8px;
-    font-size: 11px;
-    color: var(--muted);
-  }
-  .project .kind {
-    color: var(--accent);
-    letter-spacing: .1em;
-    text-transform: uppercase;
-  }
-  .project .arrow { color: var(--fg-2); }
-  .project h4 {
-    font-family: var(--mono);
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .project p {
-    font-family: var(--sans);
-    color: var(--fg-2);
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 14px;
-    flex: 1;
-  }
+      /* PROJECTS */
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      .project {
+        background: var(--bg);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 18px 20px;
+        transition:
+          border-color 0.15s,
+          transform 0.15s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .project:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+      .project .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .project .kind {
+        color: var(--accent);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .project .arrow {
+        color: var(--fg-2);
+      }
+      .project h4 {
+        font-family: var(--mono);
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .project p {
+        font-family: var(--sans);
+        color: var(--fg-2);
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 14px;
+        flex: 1;
+      }
 
-  /* TESTIMONIALS */
-  .quotes {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-  .quote {
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 18px 20px;
-    border-left: 3px solid var(--accent);
-  }
-  .quote::before {
-    content: "$ echo";
-    display: block;
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-  .quote blockquote {
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--fg);
-    margin-bottom: 12px;
-  }
-  .quote cite {
-    font-style: normal;
-    font-size: 11px;
-    color: var(--fg-2);
-    display: flex; flex-direction: column;
-    gap: 2px;
-  }
-  .quote cite strong { color: var(--accent); }
+      /* TESTIMONIALS */
+      .quotes {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .quote {
+        background: var(--bg);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 18px 20px;
+        border-left: 3px solid var(--accent);
+      }
+      .quote::before {
+        content: "$ echo";
+        display: block;
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .quote blockquote {
+        font-family: var(--sans);
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--fg);
+        margin-bottom: 12px;
+      }
+      .quote cite {
+        font-style: normal;
+        font-size: 11px;
+        color: var(--fg-2);
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .quote cite strong {
+        color: var(--accent);
+      }
 
-  /* CONTACT */
-  .contact {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 14px;
-  }
-  .contact-row {
-    display: flex; align-items: center; gap: 12px;
-    padding: 12px 16px;
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    transition: all .15s;
-  }
-  .contact-row:hover { border-color: var(--accent); transform: translateX(2px); }
-  .contact-row .key {
-    color: var(--accent);
-    font-size: 12px;
-    min-width: 90px;
-  }
-  .contact-row .val {
-    color: var(--fg);
-    font-size: 13px;
-    word-break: break-all;
-  }
+      /* CONTACT */
+      .contact {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 14px;
+      }
+      .contact-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background: var(--bg);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        transition: all 0.15s;
+      }
+      .contact-row:hover {
+        border-color: var(--accent);
+        transform: translateX(2px);
+      }
+      .contact-row .key {
+        color: var(--accent);
+        font-size: 12px;
+        min-width: 90px;
+      }
+      .contact-row .val {
+        color: var(--fg);
+        font-size: 13px;
+        word-break: break-all;
+      }
 
-  /* INFO GRID */
-  .info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 14px;
-    margin-top: 14px;
-  }
-  .info-card {
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 16px;
-  }
-  .info-card h4 {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent-2);
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .info-card .item {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 5px 0;
-    font-size: 13px;
-    border-bottom: 1px dashed var(--rule);
-  }
-  .info-card .item:last-child { border-bottom: 0; }
-  .info-card .item .lvl { color: var(--accent); font-size: 11px; }
-  .info-card .lang-dots {
-    display: inline-flex; gap: 3px;
-    margin-left: 6px;
-  }
-  .info-card .lang-dots b {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent);
-    display: inline-block;
-  }
-  .info-card .lang-dots b.off { background: var(--rule); }
-  .info-card .cert {
-    font-size: 12px;
-    color: var(--fg-2);
-    padding: 6px 0;
-    border-bottom: 1px dashed var(--rule);
-  }
-  .info-card .cert:last-child { border-bottom: 0; }
-  .info-card .cert::before {
-    content: "✓ "; color: var(--accent);
-  }
+      /* INFO GRID */
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+        margin-top: 14px;
+      }
+      .info-card {
+        background: var(--bg);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        padding: 16px;
+      }
+      .info-card h4 {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--accent-2);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .info-card .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 5px 0;
+        font-size: 13px;
+        border-bottom: 1px dashed var(--rule);
+      }
+      .info-card .item:last-child {
+        border-bottom: 0;
+      }
+      .info-card .item .lvl {
+        color: var(--accent);
+        font-size: 11px;
+      }
+      .info-card .lang-dots {
+        display: inline-flex;
+        gap: 3px;
+        margin-left: 6px;
+      }
+      .info-card .lang-dots b {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: inline-block;
+      }
+      .info-card .lang-dots b.off {
+        background: var(--rule);
+      }
+      .info-card .cert {
+        font-size: 12px;
+        color: var(--fg-2);
+        padding: 6px 0;
+        border-bottom: 1px dashed var(--rule);
+      }
+      .info-card .cert:last-child {
+        border-bottom: 0;
+      }
+      .info-card .cert::before {
+        content: "✓ ";
+        color: var(--accent);
+      }
 
-  /* PHILOSOPHY */
-  .philo {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 16px;
-  }
-  .philo .card {
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 14px 16px;
-  }
-  .philo .card .k {
-    font-size: 11px;
-    color: var(--accent-2);
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .philo .card .v {
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.4;
-    color: var(--fg);
-  }
+      footer {
+        margin-top: 40px;
+        padding-top: 18px;
+        border-top: 1px dashed var(--rule);
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 12px;
+      }
 
-  footer {
-    margin-top: 40px;
-    padding-top: 18px;
-    border-top: 1px dashed var(--rule);
-    display: flex; justify-content: space-between;
-    color: var(--muted);
-    font-size: 12px;
-  }
+      @media (max-width: 880px) {
+        .terminal {
+          padding: 18px 16px 40px;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .hero-photo {
+          max-width: 240px;
+        }
+        .stats,
+        .skill-grid,
+        .projects,
+        .quotes,
+        .contact,
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+      }
 
-  @media (max-width: 880px) {
-    .terminal { padding: 18px 16px 40px; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-photo { max-width: 240px; }
-    .stats, .skill-grid, .projects, .quotes, .contact, .info-grid, .philo {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @page { size: A4; margin: 12mm; }
-  @media print {
-    :root {
-      --bg: #fff; --bg-2: #fff; --bg-3: #f4f4f1;
-      --fg: #111; --fg-2: #333; --muted: #888; --rule: #d0d0d0;
-      --accent: #1f7a3a; --accent-2: #8a5a00; --accent-3: #1e5fa6;
-    }
-    body { background: #fff !important; background-image: none; font-size: 9.5pt; }
-    .titlebar, .actions, footer, .filter-row { display: none !important; }
-    .window { box-shadow: none; border: 0; margin: 0; max-width: 100%; border-radius: 0; }
-    .terminal { padding: 0; }
-    .hero { grid-template-columns: 1fr 110px; gap: 18px; margin-bottom: 14px; }
-    .hero h1 { font-size: 22pt; line-height: 1.05; }
-    .hero h1 .caret { display: none; }
-    .hero-photo { aspect-ratio: 1; max-width: 110px; max-height: 110px; }
-    .summary-box { font-size: 9.5pt; padding: 8px 10px; }
-    .stats { gap: 6px; }
-    .stat { padding: 6px 8px; }
-    .stat .v { font-size: 14pt; }
-    .stat .k { font-size: 8pt; }
-    section { margin-top: 14px; page-break-inside: avoid; }
-    .section-head { padding-bottom: 4px; margin-bottom: 8px; }
-    .section-head h2 { font-size: 12pt; }
-    .job { margin-bottom: 6px; break-inside: avoid; }
-    .job-bar { padding: 4px 10px; }
-    .job-body { padding: 8px 12px; }
-    .job-body h3 { font-size: 11pt; }
-    .skill-grid, .projects { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-    .skill-card, .project { padding: 8px 10px; min-height: 0; break-inside: avoid; }
-    .quotes { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-    .quote { padding: 8px 10px; }
-    .quote blockquote { font-size: 9pt; }
-    .info-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-    .philo { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-    .contact { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-    .contact-row { padding: 6px 10px; }
-    .ascii { display: none; }
-    .hero-photo::after, .hero-photo .scanlines { display: none; }
-    .hero-photo img { filter: grayscale(1); }
-  }
-</style>
-</head>
-<body>
-  <div class="window">
-    <div class="titlebar">
-      <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
-      <div class="path"><span class="at">jrodriguez</span>@<span class="where">unir</span>:<span style="color:var(--accent-2)">~/cv</span> — zsh — 142×42</div>
-      <div class="actions">
-        <button class="btn" id="lang-toggle">EN</button>
-        <button class="btn" id="theme-toggle">◐</button>
-        <button class="btn" id="print-btn">⌘P</button>
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+      @media print {
+        :root {
+          --bg: #fff;
+          --bg-2: #fff;
+          --bg-3: #f4f4f1;
+          --fg: #111;
+          --fg-2: #333;
+          --muted: #888;
+          --rule: #d0d0d0;
+          --accent: #1f7a3a;
+          --accent-2: #8a5a00;
+          --accent-3: #1e5fa6;
+        }
+        body {
+          background: #fff !important;
+          background-image: none;
+          font-size: 9.5pt;
+        }
+        .titlebar,
+        .actions,
+        footer,
+        .filter-row {
+          display: none !important;
+        }
+        .window {
+          box-shadow: none;
+          border: 0;
+          margin: 0;
+          max-width: 100%;
+          border-radius: 0;
+        }
+        .terminal {
+          padding: 0;
+        }
+        .hero {
+          grid-template-columns: 1fr 110px;
+          gap: 18px;
+          margin-bottom: 14px;
+        }
+        .hero h1 {
+          font-size: 22pt;
+          line-height: 1.05;
+        }
+        .hero h1 .caret {
+          display: none;
+        }
+        .hero-photo {
+          aspect-ratio: 1;
+          max-width: 110px;
+          max-height: 110px;
+        }
+        .summary-box {
+          font-size: 9.5pt;
+          padding: 8px 10px;
+        }
+        .stats {
+          gap: 6px;
+        }
+        .stat {
+          padding: 6px 8px;
+        }
+        .stat .v {
+          font-size: 14pt;
+        }
+        .stat .k {
+          font-size: 8pt;
+        }
+        section {
+          margin-top: 14px;
+          page-break-inside: avoid;
+        }
+        .section-head {
+          padding-bottom: 4px;
+          margin-bottom: 8px;
+        }
+        .section-head h2 {
+          font-size: 12pt;
+        }
+        .job {
+          margin-bottom: 6px;
+          break-inside: avoid;
+        }
+        .job-bar {
+          padding: 4px 10px;
+        }
+        .job-body {
+          padding: 8px 12px;
+        }
+        .job-body h3 {
+          font-size: 11pt;
+        }
+        .skill-grid,
+        .projects {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 6px;
+        }
+        .skill-card,
+        .project {
+          padding: 8px 10px;
+          min-height: 0;
+          break-inside: avoid;
+        }
+        .quotes {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
+        }
+        .quote {
+          padding: 8px 10px;
+        }
+        .quote blockquote {
+          font-size: 9pt;
+        }
+        .info-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
+        }
+        .contact {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 6px;
+        }
+        .contact-row {
+          padding: 6px 10px;
+        }
+        .ascii {
+          display: none;
+        }
+        .hero-photo::after,
+        .hero-photo .scanlines {
+          display: none;
+        }
+        .hero-photo img {
+          filter: grayscale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="window">
+      <div class="titlebar">
+        <div class="dots">
+          <span class="dot r"></span><span class="dot y"></span><span
+            class="dot g"></span>
+        </div>
+        <div class="path">
+          <span class="at">jrodriguez</span>@<span class="where">unir</span
+          >:<span style="color:var(--accent-2)">~/cv</span> — zsh — 142×42
+        </div>
+        <div class="actions">
+          <button class="btn" id="lang-toggle">EN</button>
+          <button class="btn" id="theme-toggle">◐</button>
+          <button class="btn" id="print-btn">⌘P</button>
+        </div>
       </div>
-    </div>
 
-    <div class="terminal">
-      <pre class="ascii"> ┌─────────────────────────────────────────────────────────────────────────┐
+      <div class="terminal">
+        <pre
+          class="ascii"> ┌─────────────────────────────────────────────────────────────────────────┐
  │  J E S Ú S  ·  P E D R O   R O D R Í G U E Z   C A S T R O           │
- │  >> tech lead · scrum master · clean architecture · .NET · angular      │
+ │  >> tech lead · genai specialist · clean architecture                   │
  └─────────────────────────────────────────────────────────────────────────┘</pre>
 
-      <div class="prompt"><span class="user">jrodriguez</span><span class="at">@</span><span class="host">unir</span><span class="colon">:</span><span class="pwd">~/cv</span> <span class="dollar">$</span> <span class="cmd">whoami --verbose</span></div>
+        <div class="prompt">
+          <span class="user">jrodriguez</span><span class="at">@</span><span
+            class="host">unir</span
+          ><span class="colon">:</span><span class="pwd">~/cv</span>
+          <span class="dollar">$</span>
+          <span class="cmd">whoami --verbose</span>
+        </div>
 
-      <div class="response">
-        <div class="hero">
-          <div>
-            <h1>Jesús P. Rodríguez<span class="caret"></span></h1>
-            <div class="role-strip">
-              <span class="label">role:</span><span class="val" data-cv="role">Tech Lead &amp; Scrum Master</span>
+        <div class="response">
+          <div class="hero">
+            <div>
+              <h1>Jesús P. Rodríguez<span class="caret"></span></h1>
+              <div class="role-strip">
+                <span class="label">role:</span><span class="val" data-cv="role"
+                  >Tech Lead &amp; Scrum Master</span
+                >
+              </div>
+              <div class="summary-box" data-cv="summary"></div>
+              <div class="stats" id="stats"></div>
             </div>
-            <div class="summary-box" data-cv="summary"></div>
-            <div class="stats" id="stats"></div>
+            <figure class="hero-photo">
+              <img src={photoSrc} alt="Jesús" />
+              <div class="scanlines"></div>
+              <div class="badge">// online</div>
+            </figure>
           </div>
-          <figure class="hero-photo">
-            <img src={photoSrc} alt="Jesús" />
-            <div class="scanlines"></div>
-            <div class="badge">// online</div>
-          </figure>
         </div>
+
+        <!-- EXPERIENCE -->
+        <section id="work">
+          <div class="prompt">
+            <span class="user">jrodriguez</span><span class="at">@</span><span
+              class="host">unir</span
+            ><span class="colon">:</span><span class="pwd">~/cv</span>
+            <span class="dollar">$</span>
+            <span class="cmd">git log --author='jrodriguez' --since='2010'</span
+            >
+          </div>
+          <div class="section-head">
+            <h2 data-i18n="titles.work">Trayectoria</h2>
+            <span class="meta">// 15+ años</span>
+          </div>
+          <div id="timeline"></div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+          <div class="prompt">
+            <span class="user">jrodriguez</span><span class="at">@</span><span
+              class="host">unir</span
+            ><span class="colon">:</span><span class="pwd">~/cv</span>
+            <span class="dollar">$</span>
+            <span class="cmd">ls ./skills | grep --color</span>
+          </div>
+          <div class="section-head">
+            <h2 data-i18n="titles.skills">Skills</h2>
+            <span class="meta" id="skill-count"></span>
+          </div>
+          <div class="filter-row" id="filter-row"></div>
+          <div class="skill-grid" id="skill-grid"></div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+          <div class="prompt">
+            <span class="user">jrodriguez</span><span class="at">@</span><span
+              class="host">unir</span
+            ><span class="colon">:</span><span class="pwd">~/cv</span>
+            <span class="dollar">$</span>
+            <span class="cmd">ls ./projects --tree</span>
+          </div>
+          <div class="section-head">
+            <h2 data-i18n="titles.projects">Proyectos</h2>
+            <span class="meta">// trabajo seleccionado</span>
+          </div>
+          <div class="projects" id="projects-grid"></div>
+        </section>
+
+        <!-- INFO -->
+        <section id="info">
+          <div class="prompt">
+            <span class="user">jrodriguez</span><span class="at">@</span><span
+              class="host">unir</span
+            ><span class="colon">:</span><span class="pwd">~/cv</span>
+            <span class="dollar">$</span>
+            <span class="cmd">env | grep -E 'EDU|LANG|CERT'</span>
+          </div>
+          <div class="info-grid" id="info-grid"></div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+          <div class="prompt">
+            <span class="user">jrodriguez</span><span class="at">@</span><span
+              class="host">unir</span
+            ><span class="colon">:</span><span class="pwd">~/cv</span>
+            <span class="dollar">$</span>
+            <span class="cmd">curl -X CONTACT</span>
+          </div>
+          <div class="section-head">
+            <h2 data-i18n="titles.contact">Contacto</h2>
+            <span class="meta">// 200 OK</span>
+          </div>
+          <div class="contact" id="contact-list"></div>
+        </section>
+
+        <footer>
+          <div>$ exit · 0</div>
+          <div>v2 → terminal · zsh</div>
+        </footer>
       </div>
-
-      <!-- ABOUT / PHILOSOPHY -->
-      <section id="about">
-        <div class="prompt"><span class="user">jrodriguez</span><span class="at">@</span><span class="host">unir</span><span class="colon">:</span><span class="pwd">~/cv</span> <span class="dollar">$</span> <span class="cmd">cat philosophy.md</span></div>
-        <div class="section-head">
-          <h2 data-i18n="titles.philosophy">Cómo trabajo</h2>
-          <span class="meta">// 4 principios</span>
-        </div>
-        <div class="philo" id="philo"></div>
-      </section>
-
-      <!-- EXPERIENCE -->
-      <section id="work">
-        <div class="prompt"><span class="user">jrodriguez</span><span class="at">@</span><span class="host">unir</span><span class="colon">:</span><span class="pwd">~/cv</span> <span class="dollar">$</span> <span class="cmd">git log --author='jrodriguez' --since='2010'</span></div>
-        <div class="section-head">
-          <h2 data-i18n="titles.work">Trayectoria</h2>
-          <span class="meta">// 15+ años</span>
-        </div>
-        <div id="timeline"></div>
-      </section>
-
-      <!-- SKILLS -->
-      <section id="skills">
-        <div class="prompt"><span class="user">jrodriguez</span><span class="at">@</span><span class="host">unir</span><span class="colon">:</span><span class="pwd">~/cv</span> <span class="dollar">$</span> <span class="cmd">ls ./skills | grep --color</span></div>
-        <div class="section-head">
-          <h2 data-i18n="titles.skills">Skills</h2>
-          <span class="meta" id="skill-count"></span>
-        </div>
-        <div class="filter-row" id="filter-row"></div>
-        <div class="skill-grid" id="skill-grid"></div>
-      </section>
-
-      <!-- PROJECTS -->
-      <section id="projects">
-        <div class="prompt"><span class="user">jrodriguez</span><span class="at">@</span><span class="host">unir</span><span class="colon">:</span><span class="pwd">~/cv</span> <span class="dollar">$</span> <span class="cmd">ls ./projects --tree</span></div>
-        <div class="section-head">
-          <h2 data-i18n="titles.projects">Proyectos</h2>
-          <span class="meta">// trabajo seleccionado</span>
-        </div>
-        <div class="projects" id="projects-grid"></div>
-      </section>
-
-      <!-- INFO -->
-      <section id="info">
-        <div class="prompt"><span class="user">jrodriguez</span><span class="at">@</span><span class="host">unir</span><span class="colon">:</span><span class="pwd">~/cv</span> <span class="dollar">$</span> <span class="cmd">env | grep -E 'EDU|LANG|CERT'</span></div>
-        <div class="info-grid" id="info-grid"></div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact">
-        <div class="prompt"><span class="user">jrodriguez</span><span class="at">@</span><span class="host">unir</span><span class="colon">:</span><span class="pwd">~/cv</span> <span class="dollar">$</span> <span class="cmd">curl -X CONTACT</span></div>
-        <div class="section-head">
-          <h2 data-i18n="titles.contact">Contacto</h2>
-          <span class="meta">// 200 OK</span>
-        </div>
-        <div class="contact" id="contact-list"></div>
-      </section>
-
-      <footer>
-        <div>$ exit · 0</div>
-        <div>v2 → terminal · zsh</div>
-      </footer>
     </div>
-  </div>
 
-  <script is:inline>
-    (function () {
-      const CV = {
-        meta: {
-          name: "Jesús Pedro Rodríguez Castro",
-          initials: "JR",
-          email: "jesusprodriguez@gmail.com",
-          phone: "+34 670 40 24 50",
-          location: { es: "Madrid, España", en: "Madrid, Spain" },
-          linkedin: "https://www.linkedin.com/in/jes%C3%BAs-pedro-rodr%C3%ADguez-castro-b746394a/",
-          github: "https://github.com/jesusprodriguezUnir",
-          yearsExp: 15
-        },
-        role: {
-          es: "Líder Técnico & Scrum Master",
-          en: "Tech Lead & Scrum Master"
-        },
-        tagline: {
-          es: "Construyo plataformas serias con equipos sanos.",
-          en: "I build serious platforms with healthy teams."
-        },
-        summary: {
-          es: "Líder Técnico Senior y Scrum Master con más de 15 años diseñando arquitecturas escalables (DDD, Clean Architecture) y guiando equipos de alto rendimiento en ecosistemas .NET y Angular. Mi obsesión: que el código y las personas envejezcan bien.",
-          en: "Senior Tech Lead and Scrum Master with 15+ years designing scalable architectures (DDD, Clean Architecture) and guiding high-performance teams across the .NET and Angular ecosystems. My obsession: making both the code and the people age well."
-        },
-        stats: [
-          { value: "15+", label: { es: "años de experiencia", en: "years of experience" } },
-          { value: "80%", label: { es: "cobertura de tests sostenida", en: "sustained test coverage" } },
-          { value: "2", label: { es: "equipos Scrum facilitados", en: "Scrum teams facilitated" } },
-          { value: "1", label: { es: "ERP académico en producción", en: "academic ERP in production" } }
-        ],
-        experience: [
-          {
-            role: { es: "Líder Técnico & Scrum Master", en: "Tech Lead & Scrum Master" },
-            company: "UNIR — La Universidad en Internet",
-            period: { es: "Feb 2020 — Presente", en: "Feb 2020 — Present" },
-            location: "Madrid",
-            bullets: {
-              es: [
-                "Diseño del núcleo del ERP Académico aplicando DDD y Clean Architecture, sirviendo a +250.000 alumnos.",
-                "Liderazgo de equipos Scrum: facilitación, mentoring y entrega continua de valor.",
-                "Optimización de pipelines CI/CD con TeamCity y Azure DevOps; despliegues con confianza.",
-                "Mantenimiento de cobertura de pruebas del 80% y de un código que se entiende solo."
-              ],
-              en: [
-                "Designed the core of the Academic ERP using DDD and Clean Architecture, serving 250,000+ students.",
-                "Led Scrum teams: facilitation, mentoring, and continuous delivery of value.",
-                "Optimized CI/CD pipelines with TeamCity and Azure DevOps; confident deployments.",
-                "Sustained 80% test coverage and code that explains itself."
-              ]
-            },
-            tags: [".NET 8", "Angular 18+", "DDD", "Clean Arch", "Azure DevOps", "Docker"]
+    <script is:inline>
+      (function () {
+        const CV = {
+          meta: {
+            name: "Jesús Pedro Rodríguez Castro",
+            initials: "JR",
+            email: "jesusprodriguez@gmail.com",
+            phone: "+34 670 40 24 50",
+            location: { es: "Madrid, España", en: "Madrid, Spain" },
+            linkedin:
+              "https://www.linkedin.com/in/jes%C3%BAs-pedro-rodr%C3%ADguez-castro-b746394a/",
+            github: "https://github.com/jesusprodriguezUnir",
+            yearsExp: 15,
           },
-          {
-            role: { es: "Analista .NET / Funcional", en: ".NET / Functional Analyst" },
-            company: "SOTEC Consulting",
-            period: { es: "Jun 2010 — Feb 2020", en: "Jun 2010 — Feb 2020" },
-            location: "Madrid",
-            bullets: {
-              es: [
-                "Ciclo de vida de aplicaciones críticas: el negocio depende de que esto no se caiga.",
-                "Optimización de rendimiento sobre Oracle y SQL Server; menos incidencias, más sueño.",
-                "Liderazgo en migraciones de sistemas Legacy a .NET moderno sin parar el negocio."
-              ],
-              en: [
-                "Lifecycle of business-critical applications: the company relied on these staying up.",
-                "Performance tuning on Oracle and SQL Server; fewer incidents, more sleep.",
-                "Led migrations from legacy systems to modern .NET without stopping the business."
-              ]
-            },
-            tags: ["C#", "ASP.NET", "Oracle", "SQL Server", "WCF"]
-          }
-        ],
-        education: [
-          {
-            title: { es: "Máster en Bases de Datos", en: "Master in Databases" },
-            institution: "Microforum",
-            period: "2001 — 2002"
-          }
-        ],
-        skills: [
-          { category: { es: "Frontend", en: "Frontend" }, items: ["Angular", "TypeScript", "RxJS", "JavaScript", "HTML5/CSS3"] },
-          { category: { es: "Backend", en: "Backend" }, items: [".NET Core / 8", "C#", "Python", "EF Core", "REST APIs"] },
-          { category: { es: "Arquitectura", en: "Architecture" }, items: ["DDD", "Clean Architecture", "Microservicios", "Hexagonal", "CQRS"] },
-          { category: { es: "DevOps & Cloud", en: "DevOps & Cloud" }, items: ["Azure DevOps", "TeamCity", "Docker", "GitFlow", "Azure"] },
-          { category: { es: "Datos", en: "Data" }, items: ["Oracle", "SQL Server", "Redis"] },
-          { category: { es: "Liderazgo", en: "Leadership" }, items: ["Scrum", "Agile", "Mentoring", "Tech Lead", "Hiring"] }
-        ],
-        projects: [
-          {
-            title: { es: "ERP Académico — Núcleo de dominio", en: "Academic ERP — Domain core" },
-            blurb: {
-              es: "Núcleo de dominio del ERP de UNIR. DDD táctico, agregados versionados, eventos integrados con bus interno.",
-              en: "Domain core of UNIR's ERP. Tactical DDD, versioned aggregates, events on an internal bus."
-            },
-            tags: [".NET 8", "DDD", "EF Core"],
-            kind: "Domain"
+          role: {
+            es: "Tech Lead · GenAI Specialist · Clean Architecture",
+            en: "Tech Lead · GenAI Specialist · Clean Architecture",
           },
-          {
-            title: { es: "Clean Architecture Reference", en: "Clean Architecture Reference" },
-            blurb: {
-              es: "Plantilla de referencia para nuevos servicios .NET: testing, observabilidad y separación estricta de capas.",
-              en: "Reference template for new .NET services: testing, observability, and strict layer separation."
-            },
-            tags: [".NET", "xUnit", "Docker"],
-            kind: "Template",
-            link: "https://github.com/jesusprodriguezUnir"
+          tagline: {
+            es: "Construyo plataformas serias con equipos sanos.",
+            en: "I build serious platforms with healthy teams.",
           },
-          {
-            title: { es: "Angular DDD Boilerplate", en: "Angular DDD Boilerplate" },
-            blurb: {
-              es: "Frontend Angular con feature-slicing, signals y stores ligeros. Pensado para equipos que crecen.",
-              en: "Angular frontend with feature-slicing, signals, and lightweight stores. Built for growing teams."
-            },
-            tags: ["Angular 18", "TypeScript", "Signals"],
-            kind: "Frontend",
-            link: "https://github.com/jesusprodriguezUnir"
+          summary: {
+            es: "Líder Técnico Senior con más de 15 años diseñando arquitecturas escalables y guiando equipos de alto rendimiento. En la actualidad, potenciando la productividad a través de herramientas de IA (Claude, GitHub Copilot) y ampliando el stack hacia Frontend (React, Astro) y Backend con Python.",
+            en: "Senior Tech Lead with 15+ years designing scalable architectures and guiding high-performance teams. Currently boosting productivity through AI tools (Claude, GitHub Copilot) and expanding the stack towards Frontend (React, Astro) and Backend with Python.",
           },
-          {
-            title: { es: "Pipelines CI/CD compartidos", en: "Shared CI/CD pipelines" },
-            blurb: {
-              es: "Plantillas YAML reutilizables en Azure DevOps. Build, test, escaneo y despliegue blue/green.",
-              en: "Reusable YAML templates in Azure DevOps. Build, test, scan, and blue/green deploy."
+          stats: [
+            {
+              value: "15+",
+              label: { es: "años de experiencia", en: "years of experience" },
             },
-            tags: ["Azure DevOps", "YAML", "Docker"],
-            kind: "DevOps"
-          }
-        ],
-        testimonials: [
-          {
-            quote: {
-              es: "Jesús es de las personas que arregla los problemas antes de que lleguen al stand-up. Convierte cualquier sprint caótico en algo entregable.",
-              en: "Jesús fixes problems before they reach stand-up. He turns any chaotic sprint into something deliverable."
+            {
+              value: "80%",
+              label: {
+                es: "cobertura de tests sostenida",
+                en: "sustained test coverage",
+              },
             },
-            author: { es: "Compañera de equipo", en: "Team peer" },
-            role: { es: "Senior Developer · UNIR", en: "Senior Developer · UNIR" }
-          },
-          {
-            quote: {
-              es: "El primer Tech Lead con el que he trabajado que se preocupa tanto del código como del estado de ánimo del equipo. Y ambas cosas se notan.",
-              en: "The first Tech Lead I've worked with who cares as much about the code as about the team's mood. Both show."
+            {
+              value: "2",
+              label: {
+                es: "equipos Scrum facilitados",
+                en: "Scrum teams facilitated",
+              },
             },
-            author: { es: "Product Owner", en: "Product Owner" },
-            role: { es: "ERP Académico · UNIR", en: "Academic ERP · UNIR" }
-          },
-          {
-            quote: {
-              es: "Si quieres saber cómo debería estar montado un .NET en serio, mira lo que hace Jesús y copia con descaro.",
-              en: "If you want to know how a serious .NET stack should look, watch what Jesús does and copy shamelessly."
+            {
+              value: "1",
+              label: {
+                es: "ERP académico en producción",
+                en: "academic ERP in production",
+              },
             },
-            author: { es: "Arquitecto de software", en: "Software architect" },
-            role: { es: "Ex-compañero · SOTEC", en: "Former colleague · SOTEC" }
-          }
-        ],
-        languages: [
-          { lang: { es: "Español", en: "Spanish" }, level: { es: "Nativo", en: "Native" }, dots: 5 },
-          { lang: { es: "Inglés", en: "English" }, level: { es: "Profesional", en: "Professional" }, dots: 4 }
-        ],
-        certifications: [
-          { name: "Microsoft Certified: Azure Fundamentals" },
-          { name: "MCP 70-229: SQL Server" },
-          { name: "TS 70-515: Web Apps .NET 4" }
-        ],
-        philosophy: {
-          es: [
-            { k: "Código", v: "El que se borra fácil." },
-            { k: "Equipos", v: "Sin héroes, con sistemas." },
-            { k: "Producto", v: "Hechos que aguantan los lunes." },
-            { k: "Liderazgo", v: "Decisiones reversibles, deuda visible." }
           ],
-          en: [
-            { k: "Code", v: "The kind that's easy to delete." },
-            { k: "Teams", v: "No heroes, just systems." },
-            { k: "Product", v: "Things that survive Mondays." },
-            { k: "Leadership", v: "Reversible decisions, visible debt." }
-          ]
-        },
-        ui: {
-          cta: {
-            es: { filterAll: "Todas", lang: "EN" },
-            en: { filterAll: "All", lang: "ES" }
+          experience: [
+            {
+              company: "UNIR",
+              role: {
+                es: "Tech Lead & AI Implementation Specialist",
+                en: "Tech Lead & AI Implementation Specialist",
+              },
+              period: { es: "2020 — Actualidad", en: "2020 — Present" },
+              location: "Madrid / Remote",
+              bullets: {
+                es: [
+                  "Desarrollo de aplicaciones académicas utilizando .NET (C#) y Python bajo arquitectura DDD.",
+                  "Implementación de microservicios y entornos utilizando Docker para asegurar la consistencia entre desarrollo y producción.",
+                  "Liderazgo de equipos Scrum: facilitación, mentoring y entrega continua de valor.",
+                  "Optimización de pipelines CI/CD con TeamCity y Azure DevOps; despliegues con confianza.",
+                  "Calidad de Código (QA): Garantía de calidad mediante Pruebas Unitarias y análisis estático de código con SonarQube",
+                  "Gestión de control de cambios estricto a través de Pull Requests y flujo GitFlow.",
+                  "Liderazgo técnico en la implementación de soluciones basadas en IA Generativa utilizando Claude y modelos de OpenAI.",
+                  "Optimización del ciclo de vida de desarrollo mediante el uso avanzado de GitHub Copilot (experiencia de +3 años).",
+                  "Liderazgo: Implementación de mejores prácticas, capacitación técnica a desarrolladores y resolución ágil de incidencias críticas (hotfixes).",
+                  "Mantenimiento de cobertura de pruebas del 80% y de un código que se entiende solo.",
+                ],
+                en: [
+                  "Development & Integration: Development of academic applications using .NET (C#) and Python under DDD architecture.",
+                  "Microservices and environment implementation using Docker to ensure consistency.",
+                  "Led Scrum teams: facilitation, mentoring, and continuous delivery of value.",
+                  "Optimized CI/CD pipelines with TeamCity and Azure DevOps; confident deployments.",
+                  "Code Quality (QA): Quality assurance through Unit Tests and static code analysis with SonarQube.",
+                  "Strict change control management via Pull Requests and GitFlow.",
+                  "Technical leadership in GenAI solutions implementation using Claude and OpenAI models.",
+                  "Optimizing SDLC through advanced use of GitHub Copilot (+3 years experience).",
+                  "Leadership: Best practices implementation, technical training for developers, and agile resolution of critical incidents (hotfixes).",
+                  "Sustained 80% test coverage and code that explains itself.",
+                ],
+              },
+              tags: [
+                "GenAI",
+                "Claude",
+                "GitHub Copilot",
+                "Tech Leadership",
+                "Open Code",
+                "Angular 18",
+                ".NET 8",
+                "Python",
+                "Docker",
+                "TeamCity",
+                "Azure DevOps",
+                "SonarQube",
+                "DDD",
+                "Mediator Pattern",
+              ],
+            },
+            {
+              role: {
+                es: "Analista .NET / Funcional",
+                en: ".NET / Functional Analyst",
+              },
+              company: "SOTEC Consulting",
+              period: { es: "Jun 2010 — Feb 2020", en: "Jun 2010 — Feb 2020" },
+              location: "Madrid",
+              bullets: {
+                es: [
+                  "Ciclo de vida de aplicaciones críticas: el negocio depende de que esto no se caiga.",
+                  "Optimización de rendimiento sobre Oracle y SQL Server; menos incidencias, más sueño.",
+                  "Liderazgo en migraciones de sistemas Legacy a .NET moderno sin parar el negocio.",
+                ],
+                en: [
+                  "Lifecycle of business-critical applications: the company relied on these staying up.",
+                  "Performance tuning on Oracle and SQL Server; fewer incidents, more sleep.",
+                  "Led migrations from legacy systems to modern .NET without stopping the business.",
+                ],
+              },
+              tags: ["C#", "ASP.NET", "Oracle", "SQL Server", "WCF"],
+            },
+          ],
+          education: [
+            {
+              title: {
+                es: "Máster en Bases de Datos",
+                en: "Master in Databases",
+              },
+              institution: "Microforum",
+              period: "2001 — 2002",
+            },
+          ],
+          skills: [
+            {
+              category: {
+                es: "Inteligencia Artificial",
+                en: "Artificial Intelligence",
+              },
+              items: [
+                "Claude",
+                "GitHub Copilot (Advanced)",
+                "Open Code",
+                "Prompt Engineering",
+              ],
+            },
+            {
+              category: {
+                es: "Frontend Development",
+                en: "Frontend Development",
+              },
+              items: [
+                "Angular 18",
+                "React",
+                "Astro",
+                "TypeScript",
+                "Tailwind CSS",
+              ],
+            },
+            {
+              category: { es: "Backend & Data", en: "Backend & Data" },
+              items: [".NET 8", "Python", "Node.js", "SQL Server"],
+            },
+            {
+              category: { es: "Arquitectura", en: "Architecture" },
+              items: [
+                "DDD",
+                "Clean Architecture",
+                "Microservicios",
+                "Hexagonal",
+                "CQRS",
+                "Mediator Pattern",
+              ],
+            },
+            {
+              category: { es: "DevOps & Cloud", en: "DevOps & Cloud" },
+              items: [
+                "Azure DevOps",
+                "TeamCity",
+                "Docker",
+                "GitFlow",
+                "Azure",
+                "SonarQube",
+              ],
+            },
+            {
+              category: { es: "Liderazgo", en: "Leadership" },
+              items: ["Scrum", "Agile", "Mentoring", "Tech Lead", "Hiring"],
+            },
+          ],
+          projects: [
+            {
+              title: {
+                es: "AI-Powered Knowledge Hub",
+                en: "AI-Powered Knowledge Hub",
+              },
+              blurb: {
+                es: "Plataforma de documentación inteligente que consume la API de Claude. Frontend rápido con Astro y React, y orquestación de modelos en backend con Python.",
+                en: "Smart documentation platform consuming the Claude API. Lightning-fast frontend with Astro/React, and model orchestration on a Python backend.",
+              },
+              tags: ["Astro", "React", "Python", "Claude API"],
+              kind: "GenAI",
+            },
+            {
+              title: {
+                es: "ERP Académico — Núcleo de dominio",
+                en: "Academic ERP — Domain core",
+              },
+              blurb: {
+                es: "Núcleo de dominio del ERP de UNIR. DDD táctico, agregados versionados, eventos integrados con bus interno.",
+                en: "Domain core of UNIR's ERP. Tactical DDD, versioned aggregates, events on an internal bus.",
+              },
+              tags: [".NET 8", "DDD", "EF Core"],
+              kind: "Domain",
+            },
+            {
+              title: {
+                es: "Clean Architecture Reference",
+                en: "Clean Architecture Reference",
+              },
+              blurb: {
+                es: "Plantilla de referencia para nuevos servicios .NET: testing, observabilidad y separación estricta de capas.",
+                en: "Reference template for new .NET services: testing, observability, and strict layer separation.",
+              },
+              tags: [".NET", "xUnit", "Docker"],
+              kind: "Template",
+              link: "https://github.com/jesusprodriguezUnir",
+            },
+            {
+              title: {
+                es: "Angular DDD Boilerplate",
+                en: "Angular DDD Boilerplate",
+              },
+              blurb: {
+                es: "Frontend Angular con feature-slicing, signals y stores ligeros. Pensado para equipos que crecen.",
+                en: "Angular frontend with feature-slicing, signals, and lightweight stores. Built for growing teams.",
+              },
+              tags: ["Angular 18", "TypeScript", "Signals"],
+              kind: "Frontend",
+              link: "https://github.com/jesusprodriguezUnir",
+            },
+            {
+              title: {
+                es: "Pipelines CI/CD compartidos",
+                en: "Shared CI/CD pipelines",
+              },
+              blurb: {
+                es: "Plantillas YAML reutilizables en Azure DevOps. Build, test, escaneo y despliegue blue/green.",
+                en: "Reusable YAML templates in Azure DevOps. Build, test, scan, and blue/green deploy.",
+              },
+              tags: ["Azure DevOps", "YAML", "Docker"],
+              kind: "DevOps",
+            },
+          ],
+          testimonials: [
+            {
+              quote: {
+                es: "Jesús es de las personas que arregla los problemas antes de que lleguen al stand-up. Convierte cualquier sprint caótico en algo entregable.",
+                en: "Jesús fixes problems before they reach stand-up. He turns any chaotic sprint into something deliverable.",
+              },
+              author: { es: "Compañera de equipo", en: "Team peer" },
+              role: {
+                es: "Senior Developer · UNIR",
+                en: "Senior Developer · UNIR",
+              },
+            },
+            {
+              quote: {
+                es: "El primer Tech Lead con el que he trabajado que se preocupa tanto del código como del estado de ánimo del equipo. Y ambas cosas se notan.",
+                en: "The first Tech Lead I've worked with who cares as much about the code as about the team's mood. Both show.",
+              },
+              author: { es: "Product Owner", en: "Product Owner" },
+              role: { es: "ERP Académico · UNIR", en: "Academic ERP · UNIR" },
+            },
+            {
+              quote: {
+                es: "Si quieres saber cómo debería estar montado un .NET en serio, mira lo que hace Jesús y copia con descaro.",
+                en: "If you want to know how a serious .NET stack should look, watch what Jesús does and copy shamelessly.",
+              },
+              author: {
+                es: "Arquitecto de software",
+                en: "Software architect",
+              },
+              role: {
+                es: "Ex-compañero · SOTEC",
+                en: "Former colleague · SOTEC",
+              },
+            },
+          ],
+          languages: [
+            {
+              lang: { es: "Español", en: "Spanish" },
+              level: { es: "Nativo", en: "Native" },
+              dots: 5,
+            },
+            {
+              lang: { es: "Inglés", en: "English" },
+              level: { es: "Profesional", en: "Professional" },
+              dots: 4,
+            },
+          ],
+          certifications: [
+            { name: "Microsoft Certified: Azure Fundamentals" },
+            { name: "MCP 70-229: SQL Server" },
+            { name: "TS 70-515: Web Apps .NET 4" },
+          ],
+          ui: {
+            cta: {
+              es: { filterAll: "Todas", lang: "EN" },
+              en: { filterAll: "All", lang: "ES" },
+            },
+            titles: {
+              es: {
+                philosophy: "Cómo trabajo",
+                work: "Trayectoria",
+                skills: "Skills",
+                projects: "Proyectos",
+                words: "Lo que dicen",
+                contact: "Contacto",
+                education: "Formación",
+                langs: "Idiomas",
+                certs: "Certificaciones",
+              },
+              en: {
+                philosophy: "How I work",
+                work: "Experience",
+                skills: "Skills",
+                projects: "Projects",
+                words: "Kind words",
+                contact: "Contact",
+                education: "Education",
+                langs: "Languages",
+                certs: "Certifications",
+              },
+            },
           },
-          titles: {
-            es: { philosophy: "Cómo trabajo", work: "Trayectoria", skills: "Skills", projects: "Proyectos", words: "Lo que dicen", contact: "Contacto", education: "Formación", langs: "Idiomas", certs: "Certificaciones" },
-            en: { philosophy: "How I work", work: "Experience", skills: "Skills", projects: "Projects", words: "Kind words", contact: "Contact", education: "Education", langs: "Languages", certs: "Certifications" }
-          }
-        }
-      };
+        };
 
-      const STATE = {
-        lang: localStorage.getItem("cv-lang") || "es",
-        theme: localStorage.getItem("cv-theme-v2") || "dark",
-        filter: "all"
-      };
+        const STATE = {
+          lang: localStorage.getItem("cv-lang") || "es",
+          theme: localStorage.getItem("cv-theme-v2") || "dark",
+          filter: "all",
+        };
 
-      function render() {
-        const L = STATE.lang;
-        document.documentElement.lang = L;
-        document.documentElement.setAttribute("data-theme", STATE.theme);
+        function render() {
+          const L = STATE.lang;
+          document.documentElement.lang = L;
+          document.documentElement.setAttribute("data-theme", STATE.theme);
 
-        document.querySelectorAll("[data-i18n]").forEach(el => {
-          const key = el.dataset.i18n.split(".")[1];
-          if (CV.ui.titles[L][key]) el.textContent = CV.ui.titles[L][key];
-        });
+          document.querySelectorAll("[data-i18n]").forEach((el) => {
+            const key = el.dataset.i18n.split(".")[1];
+            if (CV.ui.titles[L][key]) el.textContent = CV.ui.titles[L][key];
+          });
 
-        document.querySelector('[data-cv="role"]').textContent = CV.role[L];
-        document.querySelector('[data-cv="summary"]').textContent = CV.summary[L];
+          document.querySelector('[data-cv="role"]').textContent = CV.role[L];
+          document.querySelector('[data-cv="summary"]').textContent =
+            CV.summary[L];
 
-        document.getElementById("stats").innerHTML = CV.stats.map(s =>
-          `<div class="stat"><div class="v">${s.value}</div><div class="k">${s.label[L]}</div></div>`
-        ).join("");
+          document.getElementById("stats").innerHTML = CV.stats
+            .map(
+              (s) =>
+                `<div class="stat"><div class="v">${s.value}</div><div class="k">${s.label[L]}</div></div>`,
+            )
+            .join("");
 
-        document.getElementById("philo").innerHTML = CV.philosophy[L].map(p =>
-          `<div class="card"><div class="k">${p.k}</div><div class="v">${p.v}</div></div>`
-        ).join("");
-
-        document.getElementById("timeline").innerHTML = CV.experience.map(j =>
-          `<article class="job">
+          document.getElementById("timeline").innerHTML = CV.experience
+            .map(
+              (j) =>
+                `<article class="job">
             <div class="job-bar">
               <span><span class="name">${j.company.toLowerCase().split(/[\s—]/)[0]}.md</span></span>
               <span>${j.period[L]} · ${j.location}</span>
@@ -952,65 +1393,90 @@ const photoSrc = `${base}jesus_premium.png`;
             <div class="job-body">
               <h3>${j.role[L]}</h3>
               <div class="co">@ ${j.company}</div>
-              <ul>${j.bullets[L].map(b => `<li>${b}</li>`).join("")}</ul>
-              <div class="tags">${j.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+              <ul>${j.bullets[L].map((b) => `<li>${b}</li>`).join("")}</ul>
+              <div class="tags">${j.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
             </div>
-          </article>`
-        ).join("");
+          </article>`,
+            )
+            .join("");
 
-        const fr = document.getElementById("filter-row");
-        fr.innerHTML = `<button class="chip ${STATE.filter === "all" ? "active" : ""}" data-f="all">${CV.ui.cta[L].filterAll}</button>` +
-          CV.skills.map(s => `<button class="chip ${STATE.filter === s.category[L] ? "active" : ""}" data-f="${s.category[L]}">${s.category[L]}</button>`).join("");
+          const fr = document.getElementById("filter-row");
+          fr.innerHTML =
+            `<button class="chip ${STATE.filter === "all" ? "active" : ""}" data-f="all">${CV.ui.cta[L].filterAll}</button>` +
+            CV.skills
+              .map(
+                (s) =>
+                  `<button class="chip ${STATE.filter === s.category[L] ? "active" : ""}" data-f="${s.category[L]}">${s.category[L]}</button>`,
+              )
+              .join("");
 
-        document.getElementById("skill-grid").innerHTML = CV.skills.map(s =>
-          `<div class="skill-card" data-cat="${s.category[L]}">
+          document.getElementById("skill-grid").innerHTML = CV.skills
+            .map(
+              (s) =>
+                `<div class="skill-card" data-cat="${s.category[L]}">
             <div class="cat">${s.category[L]}</div>
-            <div class="items">${s.items.map(i => `<span>${i}</span>`).join("")}</div>
-          </div>`
-        ).join("");
-        applyFilter();
-        document.getElementById("skill-count").textContent = `// ${CV.skills.length} ${L === "es" ? "categorías" : "categories"}`;
+            <div class="items">${s.items.map((i) => `<span>${i}</span>`).join("")}</div>
+          </div>`,
+            )
+            .join("");
+          applyFilter();
+          document.getElementById("skill-count").textContent =
+            `// ${CV.skills.length} ${L === "es" ? "categorías" : "categories"}`;
 
-        document.getElementById("projects-grid").innerHTML = CV.projects.map(p =>
-          `<article class="project"${p.link ? ` onclick="window.open('${p.link}','_blank')" style="cursor:pointer"` : ""}>
+          document.getElementById("projects-grid").innerHTML = CV.projects
+            .map(
+              (p) =>
+                `<article class="project"${p.link ? ` onclick="window.open('${p.link}','_blank')" style="cursor:pointer"` : ""}>
             <div class="head"><span class="kind">[${p.kind}]</span><span class="arrow">→</span></div>
             <h4>${p.title[L]}</h4>
             <p>${p.blurb[L]}</p>
-            <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
-          </article>`
-        ).join("");
+            <div class="tags">${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+          </article>`,
+            )
+            .join("");
 
-        document.getElementById("quotes").innerHTML = CV.testimonials.map(t =>
-          `<figure class="quote">
+          document.getElementById("quotes").innerHTML = CV.testimonials
+            .map(
+              (t) =>
+                `<figure class="quote">
             <blockquote>"${t.quote[L]}"</blockquote>
             <cite><strong>${t.author[L]}</strong><span>${t.role[L]}</span></cite>
-          </figure>`
-        ).join("");
+          </figure>`,
+            )
+            .join("");
 
-        document.getElementById("info-grid").innerHTML = `
+          document.getElementById("info-grid").innerHTML = `
           <div class="info-card">
             <h4>${CV.ui.titles[L].education}</h4>
-            ${CV.education.map(e => `
+            ${CV.education
+              .map(
+                (e) => `
               <div class="item"><span><strong>${e.title[L]}</strong></span></div>
               <div class="cert" style="border:0;padding-top:0;">${e.institution} · ${e.period}</div>
-            `).join("")}
+            `,
+              )
+              .join("")}
           </div>
           <div class="info-card">
             <h4>${CV.ui.titles[L].langs}</h4>
-            ${CV.languages.map(l => `
+            ${CV.languages
+              .map(
+                (l) => `
               <div class="item">
                 <span>${l.lang[L]}</span>
                 <span class="lvl">${l.level[L]} <span class="lang-dots">${[...Array(5)].map((_, i) => `<b class="${i < l.dots ? "" : "off"}"></b>`).join("")}</span></span>
               </div>
-            `).join("")}
+            `,
+              )
+              .join("")}
           </div>
           <div class="info-card">
             <h4>${CV.ui.titles[L].certs}</h4>
-            ${CV.certifications.map(c => `<div class="cert">${c.name}</div>`).join("")}
+            ${CV.certifications.map((c) => `<div class="cert">${c.name}</div>`).join("")}
           </div>
         `;
 
-        document.getElementById("contact-list").innerHTML = `
+          document.getElementById("contact-list").innerHTML = `
           <a class="contact-row" href="mailto:${CV.meta.email}"><span class="key">$EMAIL</span><span class="val">${CV.meta.email}</span></a>
           <a class="contact-row" href="tel:${CV.meta.phone.replace(/\s/g, "")}"><span class="key">$PHONE</span><span class="val">${CV.meta.phone}</span></a>
           <a class="contact-row" href="${CV.meta.linkedin}" target="_blank"><span class="key">$LINKEDIN</span><span class="val">/in/jesús-pedro-rodríguez-castro</span></a>
@@ -1019,41 +1485,53 @@ const photoSrc = `${base}jesus_premium.png`;
           <span class="contact-row"><span class="key">$STATUS</span><span class="val" style="color:var(--accent)">${L === "es" ? "abierto a oportunidades" : "open to opportunities"}</span></span>
         `;
 
-        document.getElementById("lang-toggle").textContent = CV.ui.cta[L].lang;
-      }
-
-      function applyFilter() {
-        document.querySelectorAll(".skill-card").forEach(c => {
-          c.classList.toggle("is-hidden", STATE.filter !== "all" && c.dataset.cat !== STATE.filter);
-        });
-      }
-
-      document.addEventListener("click", e => {
-        const f = e.target.closest("[data-f]");
-        if (f) {
-          STATE.filter = f.dataset.f;
-          document.querySelectorAll(".chip").forEach(c => c.classList.toggle("active", c.dataset.f === STATE.filter));
-          applyFilter();
+          document.getElementById("lang-toggle").textContent =
+            CV.ui.cta[L].lang;
         }
-      });
 
-      document.getElementById("lang-toggle").addEventListener("click", () => {
-        STATE.lang = STATE.lang === "es" ? "en" : "es";
-        localStorage.setItem("cv-lang", STATE.lang);
-        STATE.filter = "all";
+        function applyFilter() {
+          document.querySelectorAll(".skill-card").forEach((c) => {
+            c.classList.toggle(
+              "is-hidden",
+              STATE.filter !== "all" && c.dataset.cat !== STATE.filter,
+            );
+          });
+        }
+
+        document.addEventListener("click", (e) => {
+          const f = e.target.closest("[data-f]");
+          if (f) {
+            STATE.filter = f.dataset.f;
+            document
+              .querySelectorAll(".chip")
+              .forEach((c) =>
+                c.classList.toggle("active", c.dataset.f === STATE.filter),
+              );
+            applyFilter();
+          }
+        });
+
+        document.getElementById("lang-toggle").addEventListener("click", () => {
+          STATE.lang = STATE.lang === "es" ? "en" : "es";
+          localStorage.setItem("cv-lang", STATE.lang);
+          STATE.filter = "all";
+          render();
+        });
+
+        document
+          .getElementById("theme-toggle")
+          .addEventListener("click", () => {
+            STATE.theme = STATE.theme === "dark" ? "light" : "dark";
+            localStorage.setItem("cv-theme-v2", STATE.theme);
+            document.documentElement.setAttribute("data-theme", STATE.theme);
+          });
+
+        document
+          .getElementById("print-btn")
+          .addEventListener("click", () => window.print());
+
         render();
-      });
-
-      document.getElementById("theme-toggle").addEventListener("click", () => {
-        STATE.theme = STATE.theme === "dark" ? "light" : "dark";
-        localStorage.setItem("cv-theme-v2", STATE.theme);
-        document.documentElement.setAttribute("data-theme", STATE.theme);
-      });
-
-      document.getElementById("print-btn").addEventListener("click", () => window.print());
-
-      render();
-    })();
-  </script>
-</body>
+      })();
+    </script>
+  </body>
 </html>

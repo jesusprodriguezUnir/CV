@@ -17,12 +17,12 @@ export const cvData = {
       period: "Feb 2020 - Presente",
       location: "Madrid",
       description: [
-        "Arquitectura: Diseño del núcleo del ERP Académico aplicando DDD y Clean Architecture.",
-        "Gestión: Liderazgo de equipos Scrum, facilitando la entrega de valor y cohesión.",
-        "DevOps: Optimización de pipelines CI/CD con TeamCity y Azure DevOps.",
-        "Calidad: Mantenimiento de cobertura de pruebas del 80% y estándares de código."
+        "Desarrollo e Integración: Desarrollo de lógica de negocio en ERP Académico utilizando .NET (C#) y Python bajo arquitectura DDD. Implementación de microservicios y entornos utilizando Docker para asegurar la consistencia entre desarrollo y producción.",
+        "DevOps & Automatización: Administración de pipelines de CI/CD en TeamCity y Azure DevOps. Creación de scripts en Python para automatizar tareas de despliegue y mantenimiento.",
+        "Calidad de Código (QA): Garantía de calidad mediante Pruebas Unitarias y análisis estático de código con SonarQube. Gestión de control de cambios estricto a través de Pull Requests y flujo GitFlow.",
+        "Liderazgo: Implementación de mejores prácticas, capacitación técnica a desarrolladores y resolución ágil de incidencias críticas (hotfixes)."
       ],
-      tags: [".NET Core 8", "Angular 20 - 18", "DDD", "Azure DevOps", "Docker"]
+      tags: ["Angular 18", ".NET 8", "Python", "Docker", "TeamCity", "Azure DevOps", "SonarQube", "DDD", "Mediator Pattern"]
     },
     {
       role: "Analista .NET / Funcional",
@@ -45,10 +45,9 @@ export const cvData = {
     }
   ],
   skills: [
-    { category: "Frontend", items: ["Angular", "JavaScript", "HTML5/CSS3"] },
-    { category: "Backend", items: [".NET Core", "C#", "Python", "EF Core"] },
-    { category: "Arquitectura", items: ["DDD", "Clean Arch", "Microservicios"] },
-    { category: "DevOps & Cloud", items: ["Azure DevOps", "TeamCity", "Docker", "GitFlow"] },
+    { category: "Stack Tecnológico", items: ["Angular 18", ".NET 8", "Python", "Docker"] },
+    { category: "CI/CD & Calidad", items: ["TeamCity", "Azure DevOps", "SonarQube"] },
+    { category: "Arquitectura", items: ["DDD", "Mediator Pattern", "Clean Architecture", "Microservicios"] },
     { category: "Soft Skills", items: ["Liderazgo", "Scrum/Agile", "Mentoring"] }
   ],
   languages: [
