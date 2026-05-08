@@ -7,7 +7,7 @@ export const cvData = {
     location: "Madrid, España",
     linkedin: "https://linkedin.com/in/jesús-pedro-rodríguez-castro-b746394a",
     github: "https://github.com/jesusprodriguezUnir",
-    avatar: "/image.png"
+    avatar: "/jesus_premium.png"
   },
   summary: "Líder Técnico Senior y Responsable de Scrum con más de 15 años de experiencia. Experto en arquitecturas escalables (DDD, Clean Architecture), transformación tecnológica y liderazgo de equipos de alto rendimiento bajo ecosistemas .NET y Angular.",
   experience: [
