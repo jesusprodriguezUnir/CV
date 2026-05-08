@@ -123,10 +123,10 @@ export function initCV() {
 
     document.getElementById("contact-list").innerHTML = `
           <a class="contact-row" href="mailto:${CV.meta.email}"><span class="key">$EMAIL</span><span class="val">${CV.meta.email}</span></a>
-          <a class="contact-row" href="tel:${CV.meta.phone.replace(/\s/g, "")}"><span class="key">$PHONE</span><span class="val">${CV.meta.phone}</span></a>
+          <a class="contact-row" href="https://wa.me/${CV.meta.phone.replace(/[\s+]/g, "")}" target="_blank"><span class="key">$WHATSAPP</span><span class="val">${CV.meta.phone}</span></a>
           <a class="contact-row" href="${CV.meta.linkedin}" target="_blank"><span class="key">$LINKEDIN</span><span class="val">/in/jesús-pedro-rodríguez-castro</span></a>
           <a class="contact-row" href="${CV.meta.github}" target="_blank"><span class="key">$GITHUB</span><span class="val">@jesusprodriguezUnir</span></a>
-          <span class="contact-row"><span class="key">$LOCATION</span><span class="val">${CV.meta.location[L]}</span></span>
+          <a class="contact-row" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CV.meta.location[L])}" target="_blank"><span class="key">$LOCATION</span><span class="val">${CV.meta.location[L]}</span></a>
           <span class="contact-row"><span class="key">$STATUS</span><span class="val" style="color:var(--accent)">${L === "es" ? "abierto a oportunidades" : "open to opportunities"}</span></span>
         `;
 
