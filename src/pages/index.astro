@@ -9,7 +9,7 @@ const photoSrc = `${base}jesus_premium.png`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jrodriguez ~ /cv $ — Terminal</title>
+    <title>Jesús Pedro Rodríguez Castro — Tech Lead & Scrum Master</title>
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,19 +37,6 @@ const photoSrc = `${base}jesus_premium.png`;
       </div>
 
       <div class="terminal">
-        <pre
-          class="ascii"> ┌─────────────────────────────────────────────────────────────────────────┐
- │  J E S Ú S  ·  P E D R O   R O D R Í G U E Z   C A S T R O           │
- │  >> tech lead · genai specialist · clean architecture                   │
- └─────────────────────────────────────────────────────────────────────────┘</pre>
-
-        <div class="prompt">
-          <span class="user">jrodriguez</span><span class="at">@</span><span
-            class="host">unir</span
-          ><span class="colon">:</span><span class="pwd">~/cv</span>
-          <span class="dollar">$</span>
-          <span class="cmd">whoami --verbose</span>
-        </div>
 
         <div class="response">
           <div class="hero">
@@ -67,20 +54,13 @@ const photoSrc = `${base}jesus_premium.png`;
               <img src={photoSrc} alt="Jesús" />
               <div class="scanlines"></div>
               <div class="badge">// online</div>
+              <div class="qr-code" id="qr-container"></div>
             </figure>
           </div>
         </div>
 
         <!-- EXPERIENCE -->
         <section id="work">
-          <div class="prompt">
-            <span class="user">jrodriguez</span><span class="at">@</span><span
-              class="host">unir</span
-            ><span class="colon">:</span><span class="pwd">~/cv</span>
-            <span class="dollar">$</span>
-            <span class="cmd">git log --author='jrodriguez' --since='2010'</span
-            >
-          </div>
           <div class="section-head">
             <h2 data-i18n="titles.work">Trayectoria</h2>
             <span class="meta">// 15+ años</span>
@@ -90,13 +70,6 @@ const photoSrc = `${base}jesus_premium.png`;
 
         <!-- SKILLS -->
         <section id="skills">
-          <div class="prompt">
-            <span class="user">jrodriguez</span><span class="at">@</span><span
-              class="host">unir</span
-            ><span class="colon">:</span><span class="pwd">~/cv</span>
-            <span class="dollar">$</span>
-            <span class="cmd">ls ./skills | grep --color</span>
-          </div>
           <div class="section-head">
             <h2 data-i18n="titles.skills">Skills</h2>
             <span class="meta" id="skill-count"></span>
@@ -107,13 +80,6 @@ const photoSrc = `${base}jesus_premium.png`;
 
         <!-- PROJECTS -->
         <section id="projects">
-          <div class="prompt">
-            <span class="user">jrodriguez</span><span class="at">@</span><span
-              class="host">unir</span
-            ><span class="colon">:</span><span class="pwd">~/cv</span>
-            <span class="dollar">$</span>
-            <span class="cmd">ls ./projects --tree</span>
-          </div>
           <div class="section-head">
             <h2 data-i18n="titles.projects">Proyectos Destacados</h2>
             <span class="meta">// engineering excellence</span>
@@ -146,25 +112,11 @@ const photoSrc = `${base}jesus_premium.png`;
 
         <!-- INFO -->
         <section id="info">
-          <div class="prompt">
-            <span class="user">jrodriguez</span><span class="at">@</span><span
-              class="host">unir</span
-            ><span class="colon">:</span><span class="pwd">~/cv</span>
-            <span class="dollar">$</span>
-            <span class="cmd">env | grep -E 'EDU|LANG|CERT'</span>
-          </div>
           <div class="info-grid" id="info-grid"></div>
         </section>
 
         <!-- CONTACT -->
         <section id="contact">
-          <div class="prompt">
-            <span class="user">jrodriguez</span><span class="at">@</span><span
-              class="host">unir</span
-            ><span class="colon">:</span><span class="pwd">~/cv</span>
-            <span class="dollar">$</span>
-            <span class="cmd">curl -X CONTACT</span>
-          </div>
           <div class="section-head">
             <h2 data-i18n="titles.contact">Contacto</h2>
             <span class="meta">// 200 OK</span>
@@ -173,8 +125,7 @@ const photoSrc = `${base}jesus_premium.png`;
         </section>
 
         <footer>
-          <div>$ exit · 0</div>
-          <div>v2 → terminal · zsh</div>
+          <div>v2.1 · Jesús Pedro Rodríguez Castro</div>
         </footer>
       </div>
     </div>

@@ -233,8 +233,7 @@ a {
   border-radius: 4px;
 }
 .summary-box::before {
-  content: "// ";
-  color: var(--muted);
+  content: "";
 }
 
 .hero-photo {
@@ -285,6 +284,47 @@ a {
   border: 1px solid var(--accent);
   border-radius: 2px;
 }
+.qr-code {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 70px;
+  background: white;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  filter: grayscale(1);
+  z-index: 5;
+}
+.qr-code:hover {
+  opacity: 1;
+  filter: grayscale(0);
+  transform: scale(1.1);
+}
+.qr-code img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.qr-code span {
+  font-size: 8px;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: var(--mono);
+}
+@media print {
+  .qr-code {
+    opacity: 1;
+    filter: grayscale(0);
+  }
+}
 
 /* STATS ROW */
 .stats {
@@ -332,8 +372,7 @@ section {
   color: var(--fg);
 }
 .section-head h2::before {
-  content: "## ";
-  color: var(--accent);
+  content: "";
 }
 .section-head .meta {
   color: var(--muted);
@@ -396,7 +435,7 @@ section {
   font-size: 14px;
 }
 .job-body li::before {
-  content: "▸";
+  content: "•";
   position: absolute;
   left: 0;
   color: var(--accent);
@@ -417,9 +456,7 @@ section {
   border-radius: 3px;
 }
 .tag::before {
-  content: "#";
-  opacity: 0.5;
-  margin-right: 2px;
+  content: "";
 }
 
 /* SKILLS */
@@ -476,7 +513,7 @@ section {
   margin-bottom: 10px;
 }
 .skill-card .cat::before {
-  content: "▶";
+  content: "•";
   color: var(--accent);
   font-size: 10px;
 }
@@ -751,7 +788,7 @@ section {
   border-bottom: 0;
 }
 .info-card .cert::before {
-  content: "✓ ";
+  content: "• ";
   color: var(--accent);
 }
 

@@ -43,12 +43,12 @@ export function initCV() {
         (j) =>
           `<article class="job">
             <div class="job-bar">
-              <span><span class="name">${j.company.toLowerCase().split(/[\s—]/)[0]}.md</span></span>
+              <span><span class="name">${j.company.toLowerCase().split(/[\s—]/)[0]}</span></span>
               <span>${j.period[L]} · ${j.location}</span>
             </div>
             <div class="job-body">
               <h3>${j.role[L]}</h3>
-              <div class="co">@ ${j.company}</div>
+               <div class="co">${j.company}</div>
               <ul>${j.bullets[L].map((b) => `<li>${b}</li>`).join("")}</ul>
               <div class="tags">${j.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
             </div>
@@ -82,7 +82,7 @@ export function initCV() {
       .map(
         (p) =>
           `<article class="project"${p.link ? ` onclick="window.open('${p.link}','_blank')" style="cursor:pointer"` : ""}>
-            <div class="head"><span class="kind">[${p.kind}]</span><span class="arrow">→</span></div>
+            <div class="head"><span class="kind">[${p.kind}]</span></div>
             <h4>${p.title[L]}</h4>
             <p>${p.blurb[L]}</p>
             <div class="tags">${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
@@ -92,43 +92,48 @@ export function initCV() {
 
     document.getElementById("info-grid").innerHTML = `
           <div class="info-card">
-            <h4>${CV.ui.titles[L].education}</h4>
-            ${CV.education
-              .map(
-                (e) => `
-              <div class="item"><span><strong>${e.title[L]}</strong></span></div>
-              <div class="cert" style="border:0;padding-top:0;">${e.institution} · ${e.period}</div>
-            `,
-              )
-              .join("")}
+            <h4>${CV.ui.titles[L].certs}</h4>
+            ${CV.certifications.map((c) => `<div class="cert">${c.name}</div>`).join("")}
           </div>
           <div class="info-card">
             <h4>${CV.ui.titles[L].langs}</h4>
             ${CV.languages
-              .map(
-                (l) => `
+        .map(
+          (l) => `
               <div class="item">
                 <span>${l.lang[L]}</span>
                 <span class="lvl">${l.level[L]} <span class="lang-dots">${[...Array(5)].map((_, i) => `<b class="${i < l.dots ? "" : "off"}"></b>`).join("")}</span></span>
               </div>
             `,
-              )
-              .join("")}
+        )
+        .join("")}
           </div>
           <div class="info-card">
-            <h4>${CV.ui.titles[L].certs}</h4>
-            ${CV.certifications.map((c) => `<div class="cert">${c.name}</div>`).join("")}
+            <h4>${CV.ui.titles[L].education}</h4>
+            ${CV.education
+        .map(
+          (e) => `
+              <div class="item"><span><strong>${e.title[L]}</strong></span></div>
+              <div class="cert" style="border:0;padding-top:0;">${e.institution} · ${e.period}</div>
+            `,
+        )
+        .join("")}
           </div>
         `;
 
     document.getElementById("contact-list").innerHTML = `
-          <a class="contact-row" href="mailto:${CV.meta.email}"><span class="key">$EMAIL</span><span class="val">${CV.meta.email}</span></a>
-          <a class="contact-row" href="https://wa.me/${CV.meta.phone.replace(/[\s+]/g, "")}" target="_blank"><span class="key">$WHATSAPP</span><span class="val">${CV.meta.phone}</span></a>
-          <a class="contact-row" href="${CV.meta.linkedin}" target="_blank"><span class="key">$LINKEDIN</span><span class="val">/in/jesús-pedro-rodríguez-castro</span></a>
-          <a class="contact-row" href="${CV.meta.github}" target="_blank"><span class="key">$GITHUB</span><span class="val">@jesusprodriguezUnir</span></a>
-          <a class="contact-row" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CV.meta.location[L])}" target="_blank"><span class="key">$LOCATION</span><span class="val">${CV.meta.location[L]}</span></a>
-          <span class="contact-row"><span class="key">$STATUS</span><span class="val" style="color:var(--accent)">${L === "es" ? "abierto a oportunidades" : "open to opportunities"}</span></span>
+          <a class="contact-row" href="mailto:${CV.meta.email}"><span class="key">EMAIL</span><span class="val">${CV.meta.email}</span></a>
+          <a class="contact-row" href="https://wa.me/${CV.meta.phone.replace(/[\s+]/g, "")}" target="_blank"><span class="key">WHATSAPP</span><span class="val">${CV.meta.phone}</span></a>
+          <a class="contact-row" href="${CV.meta.linkedin}" target="_blank"><span class="key">LINKEDIN</span><span class="val">/in/jesús-pedro-rodríguez-castro</span></a>
+          <a class="contact-row" href="${CV.meta.github}" target="_blank"><span class="key">GITHUB</span><span class="val">@jesusprodriguezUnir</span></a>
+          <a class="contact-row" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CV.meta.location[L])}" target="_blank"><span class="key">LOCATION</span><span class="val">${CV.meta.location[L]}</span></a>
+          <span class="contact-row"><span class="key">STATUS</span><span class="val" style="color:var(--accent)">${L === "es" ? "abierto a oportunidades" : "open to opportunities"}</span></span>
         `;
+
+    document.getElementById("qr-container").innerHTML = `
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(CV.meta.linkedin)}&bgcolor=ffffff" alt="LinkedIn QR" />
+      <span>Scan Me</span>
+    `;
 
     document.getElementById("lang-toggle").textContent = CV.ui.cta[L].lang;
   }
