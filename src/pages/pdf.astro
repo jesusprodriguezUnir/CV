@@ -1,0 +1,365 @@
+---
+import { CV } from "../data/cvData.js";
+const base = import.meta.env.BASE_URL;
+const photoSrc = `${base}jesus_premium.png`;
+const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=0&data=${encodeURIComponent(CV.meta.linkedin)}&bgcolor=ffffff`;
+const t = CV.ui.titles;
+---
+
+<!doctype html>
+<html lang="es" data-lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{CV.meta.name} — CV</title>
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      (function () {
+        const p = new URLSearchParams(location.search);
+        const lang = p.get("lang") === "en" ? "en" : "es";
+        document.documentElement.setAttribute("data-lang", lang);
+        document.documentElement.setAttribute("lang", lang);
+        if (p.get("print") === "1") {
+          window.addEventListener("load", () => setTimeout(() => window.print(), 350));
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <button id="dl-btn" class="no-print" onclick="window.print()">
+      ⤓ <span class="lang-es">Descargar PDF</span><span class="lang-en">Download PDF</span>
+    </button>
+
+    <main class="sheet">
+      <header class="cv-head">
+        <img class="photo" src={photoSrc} alt={CV.meta.name} />
+        <div class="head-main">
+          <h1>{CV.meta.name}</h1>
+          <p class="role">{CV.role.es}</p>
+          <ul class="contact">
+            <li><a href={`mailto:${CV.meta.email}`}>{CV.meta.email}</a></li>
+            <li><a href={`https://wa.me/${CV.meta.phone.replace(/[\s+]/g, "")}`}>{CV.meta.phone}</a></li>
+            <li>
+              <span class="lang-es">{CV.meta.location.es}</span><span class="lang-en">{CV.meta.location.en}</span>
+            </li>
+            <li><a href={CV.meta.linkedin}>LinkedIn</a></li>
+            <li><a href={CV.meta.github}>GitHub</a></li>
+          </ul>
+        </div>
+        <figure class="qr">
+          <img src={qrSrc} alt="LinkedIn QR" />
+          <figcaption>
+            <span class="lang-es">Escanéame</span><span class="lang-en">Scan me</span>
+          </figcaption>
+        </figure>
+      </header>
+
+      <div class="grid">
+        <!-- COLUMNA PRINCIPAL -->
+        <section class="col-main">
+          <p class="summary">
+            <span class="lang-es">{CV.summary.es}</span><span class="lang-en">{CV.summary.en}</span>
+          </p>
+
+          <h2><span class="lang-es">{t.es.work}</span><span class="lang-en">{t.en.work}</span></h2>
+          {CV.experience.map((j) => (
+            <article class="job">
+              <div class="job-top">
+                <h3>
+                  <span class="lang-es">{j.role.es}</span><span class="lang-en">{j.role.en}</span>
+                </h3>
+                <span class="period">
+                  <span class="lang-es">{j.period.es}</span><span class="lang-en">{j.period.en}</span>
+                </span>
+              </div>
+              <div class="job-co">{j.company} · {j.location}</div>
+              <ul class="bullets">
+                {j.bullets.es.map((b, i) => (
+                  <li>
+                    <span class="lang-es">{b}</span><span class="lang-en">{j.bullets.en[i] ?? b}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="tags">
+                {j.tags.map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+            </article>
+          ))}
+
+          <h2><span class="lang-es">{t.es.education}</span><span class="lang-en">{t.en.education}</span></h2>
+          {CV.education.map((e) => (
+            <div class="edu">
+              <strong>
+                <span class="lang-es">{e.title.es}</span><span class="lang-en">{e.title.en}</span>
+              </strong>
+              <span class="period">{e.institution} · {e.period}</span>
+            </div>
+          ))}
+        </section>
+
+        <!-- COLUMNA LATERAL -->
+        <aside class="col-side">
+          <h2><span class="lang-es">{t.es.skills}</span><span class="lang-en">{t.en.skills}</span></h2>
+          {CV.skills.map((s) => (
+            <div class="skill-group">
+              <h4>
+                <span class="lang-es">{s.category.es}</span><span class="lang-en">{s.category.en}</span>
+              </h4>
+              <div class="tags">
+                {s.items.map((i) => <span class="tag">{i}</span>)}
+              </div>
+            </div>
+          ))}
+
+          <h2><span class="lang-es">{t.es.langs}</span><span class="lang-en">{t.en.langs}</span></h2>
+          {CV.languages.map((l) => (
+            <div class="lang-row">
+              <span>
+                <span class="lang-es">{l.lang.es}</span><span class="lang-en">{l.lang.en}</span>
+              </span>
+              <span class="lvl">
+                <span class="lang-es">{l.level.es}</span><span class="lang-en">{l.level.en}</span>
+                <span class="dots">
+                  {[...Array(5)].map((_, i) => <b class={i < l.dots ? "" : "off"}></b>)}
+                </span>
+              </span>
+            </div>
+          ))}
+
+          <h2><span class="lang-es">{t.es.certs}</span><span class="lang-en">{t.en.certs}</span></h2>
+          <ul class="certs">
+            {CV.certifications.map((c) => <li>{c.name}</li>)}
+          </ul>
+        </aside>
+      </div>
+    </main>
+
+    <style>
+      :root {
+        --ink: #1a1a1a;
+        --ink-2: #444;
+        --muted: #777;
+        --rule: #d8d8d4;
+        --accent: #1f7a3a;
+        --accent-2: #1e5fa6;
+        --bg-soft: #f5f5f2;
+        --sans: "IBM Plex Sans", system-ui, sans-serif;
+        --mono: "IBM Plex Mono", monospace;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        font-family: var(--sans);
+        color: var(--ink);
+        background: #e9e9e6;
+        font-size: 10.5pt;
+        line-height: 1.45;
+      }
+
+      /* Idioma: por defecto ES; el script alterna data-lang */
+      .lang-en { display: none; }
+      [data-lang="en"] .lang-es { display: none; }
+      [data-lang="en"] .lang-en { display: inline; }
+
+      .sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 16px auto;
+        padding: 14mm 14mm 12mm;
+        background: #fff;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+      }
+
+      /* CABECERA */
+      .cv-head {
+        display: grid;
+        grid-template-columns: 64px 1fr auto;
+        gap: 16px;
+        align-items: center;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 12px;
+      }
+      .photo {
+        width: 64px;
+        height: 64px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 1px solid var(--rule);
+      }
+      .cv-head h1 {
+        margin: 0;
+        font-size: 19pt;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .role {
+        margin: 2px 0 6px;
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 10pt;
+      }
+      .contact {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 14px;
+        font-family: var(--mono);
+        font-size: 8.5pt;
+        color: var(--ink-2);
+      }
+      .contact a { color: var(--ink-2); text-decoration: none; }
+      .contact a:hover { color: var(--accent-2); }
+      .qr {
+        margin: 0;
+        text-align: center;
+      }
+      .qr img {
+        width: 70px;
+        height: 70px;
+        display: block;
+      }
+      .qr figcaption {
+        font-family: var(--mono);
+        font-size: 7pt;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+
+      /* GRID 2 COLUMNAS */
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 0.42fr;
+        gap: 22px;
+        margin-top: 14px;
+      }
+      h2 {
+        font-size: 11pt;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 3px;
+        margin: 14px 0 8px;
+      }
+      .col-main > h2:first-of-type,
+      .col-side > h2:first-of-type { margin-top: 0; }
+
+      .summary {
+        margin: 0 0 4px;
+        font-size: 10pt;
+        color: var(--ink-2);
+        background: var(--bg-soft);
+        padding: 8px 10px;
+        border-left: 3px solid var(--accent);
+        border-radius: 0 4px 4px 0;
+      }
+
+      /* EXPERIENCIA */
+      .job { margin-bottom: 11px; break-inside: avoid; }
+      .job-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
+      }
+      .job-top h3 { margin: 0; font-size: 10.5pt; font-weight: 600; }
+      .period {
+        font-family: var(--mono);
+        font-size: 8pt;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .job-co {
+        font-size: 9pt;
+        font-weight: 600;
+        color: var(--accent-2);
+        margin-bottom: 4px;
+      }
+      .bullets {
+        margin: 0 0 5px;
+        padding-left: 16px;
+      }
+      .bullets li { margin-bottom: 2px; font-size: 9.5pt; color: var(--ink-2); }
+
+      .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+      .tag {
+        font-family: var(--mono);
+        font-size: 7.5pt;
+        padding: 1px 6px;
+        background: var(--bg-soft);
+        border: 1px solid var(--rule);
+        border-radius: 3px;
+        color: var(--ink-2);
+      }
+
+      .edu { display: flex; flex-direction: column; margin-bottom: 6px; break-inside: avoid; }
+      .edu .period { font-size: 8.5pt; }
+
+      /* LATERAL */
+      .skill-group { margin-bottom: 9px; break-inside: avoid; }
+      .skill-group h4 {
+        margin: 0 0 4px;
+        font-size: 9pt;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .lang-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+        font-size: 9.5pt;
+      }
+      .lvl { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 8.5pt; }
+      .dots { display: inline-flex; gap: 2px; }
+      .dots b { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; }
+      .dots b.off { background: var(--rule); }
+      .certs { margin: 0; padding-left: 16px; }
+      .certs li { font-size: 9pt; color: var(--ink-2); margin-bottom: 3px; }
+
+      /* BOTÓN DESCARGA */
+      #dl-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10;
+        font-family: var(--mono);
+        font-size: 10pt;
+        font-weight: 600;
+        color: #fff;
+        background: var(--accent);
+        border: 0;
+        border-radius: 6px;
+        padding: 10px 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      }
+      #dl-btn:hover { filter: brightness(1.08); }
+
+      @page { size: A4; margin: 14mm; }
+      @media print {
+        body { background: #fff; }
+        .no-print { display: none !important; }
+        .sheet {
+          width: auto;
+          min-height: 0;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+        }
+        a { color: var(--ink-2) !important; text-decoration: none; }
+        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      }
+    </style>
+  </body>
+</html>

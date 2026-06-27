@@ -131,8 +131,11 @@ export function initCV() {
         `;
 
     document.getElementById("qr-container").innerHTML = `
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(CV.meta.linkedin)}&bgcolor=ffffff" alt="LinkedIn QR" />
-      <span>Scan Me</span>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=0&data=${encodeURIComponent(CV.meta.linkedin)}&bgcolor=ffffff" alt="LinkedIn QR" />
+      <div class="qr-text">
+        <span class="qr-title">${L === "es" ? "Escanéame" : "Scan me"}</span>
+        <span class="qr-sub">${L === "es" ? "Conecta en LinkedIn" : "Connect on LinkedIn"}</span>
+      </div>
     `;
 
     document.getElementById("lang-toggle").textContent = CV.ui.cta[L].lang;
@@ -173,9 +176,10 @@ export function initCV() {
     document.documentElement.setAttribute("data-theme", STATE.theme);
   });
 
-  document
-    .getElementById("print-btn")
-    .addEventListener("click", () => window.print());
+  document.getElementById("print-btn").addEventListener("click", () => {
+    const base = import.meta.env.BASE_URL;
+    window.open(`${base}pdf/?lang=${STATE.lang}&print=1`, "_blank");
+  });
 
   render();
 }
